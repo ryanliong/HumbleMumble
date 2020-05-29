@@ -37,3 +37,12 @@ code {
   border-radius: 3em;
   margin-right: 5px;
 }
+
+#DescriptionImage {
+  border-radius: 91px 0px 90px 0px;
+  -moz-border-radius: 91px 0px 90px 0px;
+  -webkit-border-radius: 91px 0px 90px 0px;
+  border: 11px double #000000;
+  display: inline block;
+  margin: 3% 0 0 10%;
+}
