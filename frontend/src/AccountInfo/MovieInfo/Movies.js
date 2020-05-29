@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { FormGroup } from '@material-ui/core';
 // import {Link} from 'react-router-dom';
 // import axios from 'axios';
 
@@ -29,12 +30,10 @@ class Movies extends Component {
               <div class="card-body">
                 <h5 class="card-title">The Flash</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                    aria-valuemin="0" aria-valuemax="100" style={{width:'70%'}}>
-                    <span class="sr-only">70% Complete</span>
+                    <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked=""></input>
+                    <label class="custom-control-label" for="customCheck1">Completed</label> 
                     </div>
-                  </div>
                 </h6>
                 <p class="card-text">Last Watched on 1/1/2020</p>
                 <a href="#" class="card-link">Card link</a>
@@ -48,12 +47,10 @@ class Movies extends Component {
               <div class="card-body">
                 <h5 class="card-title">The Flash 2</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                    aria-valuemin="0" aria-valuemax="100" style={{width:'70%'}}>
-                    <span class="sr-only">70% Complete</span>
+                    <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked=""></input>
+                    <label class="custom-control-label" for="customCheck1">Completed</label> 
                     </div>
-                  </div>
                 </h6>
                 <p class="card-text">Last Watched on 1/2/2020</p>
                 <a href="#" class="card-link">Card link</a>
@@ -67,12 +64,10 @@ class Movies extends Component {
               <div class="card-body">
                 <h5 class="card-title">The Flash 3</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                    aria-valuemin="0" aria-valuemax="100" style={{width:'70%'}}>
-                    <span class="sr-only">70% Complete</span>
+                    <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked=""></input>
+                    <label class="custom-control-label" for="customCheck1">Completed</label> 
                     </div>
-                  </div>
                 </h6>
                 <p class="card-text">Last Watched on 1/3/2020</p>
                 <a href="#" class="card-link">Card link</a>
