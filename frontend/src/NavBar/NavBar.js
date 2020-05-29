@@ -10,7 +10,7 @@ function NavBar(props) {
 
   return (
     <nav className="navbar navbar-dark bg-primary fixed-top">
-      <Link className="navbar-brand" to="./index.html">
+      <Link className="navbar-brand" to="/">
         <img
           src={process.env.PUBLIC_URL + "/MH.png"}
           alt="HumbleMumble"
@@ -18,6 +18,11 @@ function NavBar(props) {
         />
         HumbleMumble
       </Link>
+      <Link to="/">Home</Link>
+      <Link to="/Account">My Account</Link>
+      <Link to="/Movie">Movie</Link>
+      <Link to="/Game">Game</Link>
+      <Link to="/Tv-Show">Tv-Show</Link>
       {!auth0Client.isAuthenticated() && (
         <button className="btn btn-dark" onClick={auth0Client.signIn}>
           Sign In

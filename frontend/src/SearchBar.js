@@ -8,7 +8,7 @@ function SearchBar() {
   const [text, changeText] = useState("");
   console.log(text);
   if (options.includes(text)) {
-    return <Redirect to={text + ".html"} />;
+    return <Redirect to={"/" + text} />;
   }
   return (
     <div className="flex">
