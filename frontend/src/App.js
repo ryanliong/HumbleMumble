@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 import Account from "./Account";
+import Movie from "./Movie";
+import Game from "./Game";
+import TVShow from "./Tv-Show";
 
 class App extends Component {
   render() {
@@ -13,6 +15,9 @@ class App extends Component {
         <Link to="/MainPage">Main</Link> */}
         <Route exact path="/" component={MainPage} />
         <Route exact path="/Account" component={Account} />
+        <Route exact path="/Movie" component={Movie} />
+        <Route exact path="/Game" component={Game} />
+        <Route exact path="/Tv-Show" component={TVShow} />
       </BrowserRouter>
     );
   }

@@ -16,6 +16,7 @@ function SearchBar() {
         id="free-solo-demo"
         options={options}
         onChange={(event, value) => changeText(value)}
+        autoHighlight={true}
         renderInput={(params) => (
           <TextField
             {...params}
@@ -27,15 +28,6 @@ function SearchBar() {
       />
     </div>
   );
-
-  // <form action="" className="flex">
-  //   <input
-  //     type="text"
-  //     id="SearchBar"
-  //     placeholder="Search movies, games, tv shows"
-  //   />
-  //   <button id="SearchButton">Search</button>
-  // </form>
 }
 
 export default SearchBar;
