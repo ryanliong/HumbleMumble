@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "./NavBar/NavBar";
 import Logo from "./Logo";
+import SearchBar from "./SearchBar";
 // import { Route } from "react-router-dom";
 
 // import Question from "./Question/Question";
@@ -13,9 +14,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar name="SmallLogo" />
         <Logo name="FrontPageLogo" link="index.html" />
-        {/* <SearchBar /> */}
+        <SearchBar />
         {/* <Route exact path='/' component={Questions}/>
         <Route exact path='/question/:questionId' component={Question}/>
         <Route exact path='/callback' component={Callback}/>

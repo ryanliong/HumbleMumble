@@ -17,4 +17,35 @@ code {
   width: 30em;
   display: block;
   margin: auto;
+  margin-top: 200px;
+}
+
+#SearchBar {
+  width: 50em;
+  height: 3em;
+  font-size: large;
+}
+
+#SearchButton {
+  height: 3em;
+  font-size: large;
+  text-align: center;
+}
+
+.flex {
+  display: block;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  width: 700px;
+}
+
+#SmallLogo {
+  width: 2em;
+  margin: auto;
+  display: inline-block;
+  background: white;
+  border-radius: 3em;
+  margin-right: 5px;
 }

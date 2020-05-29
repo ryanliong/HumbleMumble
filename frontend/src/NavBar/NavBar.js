@@ -10,7 +10,12 @@ function NavBar(props) {
 
   return (
     <nav className="navbar navbar-dark bg-primary fixed-top">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="./index.html">
+        <img
+          src={process.env.PUBLIC_URL + "/MH.png"}
+          alt="HumbleMumble"
+          id={props.name}
+        />
         HumbleMumble
       </Link>
       {!auth0Client.isAuthenticated() && (
