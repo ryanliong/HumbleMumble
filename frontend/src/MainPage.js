@@ -5,21 +5,19 @@ import SearchBar from "./SearchBar";
 import Account from "./Account";
 import { Route } from "react-router-dom";
 import { Link } from "react-router-dom"
-import  MainPage from "./MainPage"
 // import Question from "./Question/Question";
 // import Questions from "./Questions/Questions";
 // import Callback from "./Callback";
 // import SecuredRoute from "./SecuredRoute/SecuredRoute";
 // import NewQuestion from "./NewQuestion/NewQuestion";
 
-class App extends Component {
+class MainPage extends Component {
   render() {
     return (
       <div>
-        <Link to= '/Account'>Account</Link>
-        <Link to= '/MainPage'>Main</Link>  
-        <Route exact path='/' component={Account}/>
-        <Route exact path='/' component={MainPage}/>
+        <NavBar name="SmallLogo" />
+        <Logo name="FrontPageLogo" link="index.html" />
+        <SearchBar />
         {/* <Route exact path='/' component={Questions}/>
         <Route exact path='/question/:questionId' component={Question}/>
         <Route exact path='/callback' component={Callback}/>
@@ -29,4 +27,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default MainPage;
