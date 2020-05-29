@@ -38,11 +38,94 @@ code {
   margin-right: 5px;
 }
 
+.top {
+  display: block;
+  margin: 30px 50px 40px 50px;
+  border: 4px solid silver;
+  padding: 20px;
+  overflow: hidden;
+  width: 800px;
+}
+
 #DescriptionImage {
   border-radius: 91px 0px 90px 0px;
   -moz-border-radius: 91px 0px 90px 0px;
   -webkit-border-radius: 91px 0px 90px 0px;
   border: 11px double #000000;
-  display: inline block;
-  margin: 3% 0 0 10%;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 0;
+  width: 350px;
+}
+
+#review {
+  margin-left: 40px;
+  display: block;
+  font-size: small;
+  margin-top: 10px;
+}
+
+#reviewerImage {
+  width: 35px;
+  margin-right: 15px;
+  float: left;
+}
+
+#title {
+  margin-bottom: 0;
+  padding: 0;
+  border: 0;
+}
+
+#score {
+  font-size: 20px;
+  float: right;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#description {
+  width: 1200px;
+}
+
+.statistics h2 {
+  font-size: large;
+  display: inline;
+  padding-right: 250px;
+}
+
+#friendsOpnion {
+  height: 500px;
+  width: 300px;
+  display: inline-block;
+  margin: 0;
+  margin-right: 80px;
+  padding: 0;
+  text-align: center;
+  padding-top: 10px;
+}
+
+#friendStats {
+  height: 240px;
+  width: 250px;
+  margin: 0;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+#friendStats h2 {
+  font-size: medium;
+  padding: 0;
+  display: block;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+#movie {
+  display: block;
+  margin: auto;
+  margin-left: 25%;
 }
