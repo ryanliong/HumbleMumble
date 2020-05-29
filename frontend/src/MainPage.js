@@ -3,7 +3,7 @@ import NavBar from "./NavBar/NavBar";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 import Account from "./Account";
-import { Route } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
 import { Link } from "react-router-dom"
 // import Question from "./Question/Question";
 // import Questions from "./Questions/Questions";
@@ -18,10 +18,8 @@ class MainPage extends Component {
         <NavBar name="SmallLogo" />
         <Logo name="FrontPageLogo" link="index.html" />
         <SearchBar />
-        {/* <Route exact path='/' component={Questions}/>
-        <Route exact path='/question/:questionId' component={Question}/>
-        <Route exact path='/callback' component={Callback}/>
-        <SecuredRoute path='/new-question' component = {NewQuestion}/> */}
+        <Link to= '/Account'>Account</Link>
+        <Link to= '/MainPage'>Main</Link>
       </div>
     );
   }
