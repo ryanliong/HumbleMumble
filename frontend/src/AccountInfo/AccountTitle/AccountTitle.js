@@ -1,27 +1,17 @@
 import React from 'react';
+import ProfileImage from "./ProfileImage";
+import AccountStatistics from './AccountStatistics';
 
 function AccountTitle() {
   return (
     <div>
-    <div class="rounded float-left">
-        <img src=" https://i.pinimg.com/originals/d1/6c/09/d16c09dee6130553133b4cf3a5bd9e5a.png"
-        alt="Profile Thumbnail" class = "image-thumbnail"
-        style={{
-             position:'absolute',
-             width:'200px',
-             height:'200px',
-             left:'150px',
-             borderStyle:'solid'
-            }}>   
-        </img>
-    </div>
-    <h1 style={{
-        position:'relative',
-        top:'50px',
-        borderStyle:'solid',
-        margin:'auto',
-        width:'40%'
-        }}>Profile Name</h1>
+    <ProfileImage
+      imgUrl="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+      name="Profile Picture">
+    </ProfileImage>
+    
+    <h1 class="top" id= "ProfileName">Profile Name</h1>
+    <AccountStatistics/>
     </div>
   );
 }

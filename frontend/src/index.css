@@ -59,6 +59,19 @@ code {
   width: 350px;
 }
 
+#ProfileImage {
+  border-radius: 91px 0px 90px 0px;
+  -moz-border-radius: 91px 0px 90px 0px;
+  -webkit-border-radius: 91px 0px 90px 0px;
+  border: 11px double #000000;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 0;
+  height: 350px;
+  width: 350px;
+}
+
 #review {
   margin-left: 40px;
   display: block;
@@ -78,6 +91,10 @@ code {
   border: 0;
 }
 
+#AccountInfo {
+	margin-left: 450px;
+}
+
 #score {
   font-size: 20px;
   float: right;
@@ -94,6 +111,12 @@ code {
   font-size: large;
   display: inline;
   padding-right: 250px;
+}
+
+.statistics h3 {
+  font-size: large;
+  display: inline;
+  padding-right: 100px;
 }
 
 #friendsOpnion {
