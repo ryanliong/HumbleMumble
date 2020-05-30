@@ -98,6 +98,10 @@ body {
   border: 0;
 }
 
+#ProfileName {
+  margin-top: 100px;
+}
+
 #AccountInfo {
   margin-left: 450px;
 }
