@@ -161,3 +161,7 @@ body {
   position: absolute;
   width: auto;
 }
+
+link {
+  font-size: 1rem;
+}
