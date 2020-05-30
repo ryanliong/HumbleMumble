@@ -9,7 +9,7 @@ function NavBar(props) {
   };
 
   return (
-    <nav className="navbar navbar-dark bg-primary fixed-top">
+    <nav className="navbar navbar-dark bg-primary fixed-top" id="navbar">
       <Link className="navbar-brand" to="/">
         <img
           src={process.env.PUBLIC_URL + "/MH.png"}
