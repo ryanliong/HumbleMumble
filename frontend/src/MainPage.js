@@ -7,7 +7,7 @@ function MainPage() {
   return (
     <div>
       <NavBar name="SmallLogo" />
-      <Logo name="FrontPageLogo" link="index.html" />
+      <Logo name="FrontPageLogo" link="/" />
       <SearchBar />
     </div>
   );
