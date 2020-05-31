@@ -92,6 +92,12 @@ body {
   float: left;
 }
 
+#ThumbnailImage {
+  width: 70px;
+  margin-right: 15px;
+  float: left;
+}
+
 #title {
   margin-bottom: 0;
   padding: 0;

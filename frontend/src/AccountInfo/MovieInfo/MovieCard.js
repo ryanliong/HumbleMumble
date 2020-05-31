@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import CardStatistics from '../CardStatistics';
-import Form from 'react-bootstrap/Form';
+import CheckBox from '../CheckBox';
 
-function MovieCard() {
+function MovieCard(props) {
 	return(
 		<div class="card" style={{width: '80rem'}}>
       <div class="card-body">
+				<img src={props.imgUrl} alt="MovieImage" id="ThumbnailImage" />
         <h5 class="card-title">The Flash</h5>
-        <Form.Group controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Completed" />
-        </Form.Group>
+				<CheckBox/>
         <p class="card-text">Last Watched on 1/1/2020</p>
 				<div>
 					<a href="#" class="card-link" style={{float:'left'}}>Continue where you left off</a>
@@ -19,6 +18,7 @@ function MovieCard() {
       </div>
     </div>
 	);
+
 }
 
 export default MovieCard;

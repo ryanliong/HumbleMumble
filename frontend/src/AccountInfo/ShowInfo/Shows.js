@@ -8,13 +8,19 @@ function Shows() {
         <div class="card" style={{width: "82rem", marginTop:'50px'}}>
         	<ul class="list-group list-group-flush">
         		<li class="list-group-item">
-							<ShowCard/>
+							<ShowCard
+								imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/The_Flash_season_6.jpg/	220px-The_Flash_season_6.jpg"
+							></ShowCard> 
 						</li>
 						<li class="list-group-item">
-							<ShowCard/>
+							<ShowCard
+								imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/The_Flash_season_6.jpg/	220px-The_Flash_season_6.jpg"
+							></ShowCard>
 						</li>
             <li class="list-group-item">
-							<ShowCard/>
+							<ShowCard
+								imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/The_Flash_season_6.jpg/	220px-The_Flash_season_6.jpg"
+							></ShowCard>
 						</li>
           </ul>
         </div>
