@@ -16,7 +16,11 @@ function ShowCard(props) {
           <a href="#" class="card-link" style={{ float: "left" }}>
             Continue where you left off
           </a>
-          <a href="#" class="card-link" style={{ float: "left" }}>
+          <a
+            href="#"
+            class="card-link"
+            style={{ float: "left", marginRight: "5px" }}
+          >
             Read Reviews
           </a>
           <CardStatistics style={{ float: "left" }}></CardStatistics>

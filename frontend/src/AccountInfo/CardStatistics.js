@@ -6,9 +6,11 @@ function CardStatistics() {
       <div
         class="top"
         id="description"
+        display="inline-block"
         style={{
-          width: "900px",
-          marginLeft: "320px",
+          float: "right",
+          margin: "0px",
+          width: "800px",
         }}
       >
         <div class="statistics">
