@@ -3,15 +3,16 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Redirect } from "react-router";
 
-function SearchBar() {
+function SearchBar(props) {
   const options = ["Movie", "Game", "Tv-Show"];
   const [text, changeText] = useState("");
-  console.log(text);
+
   if (options.includes(text)) {
     return <Redirect to={"/" + text} />;
   }
+
   return (
-    <div className="flex">
+    <div className={props.style}>
       <Autocomplete
         id="free-solo-demo"
         options={options}
