@@ -1,19 +1,28 @@
 import React, { useState } from "react";
+import { Card, Grid, Typography, CardContent } from "@material-ui/core";
 
 function Statistics() {
   return (
-    <div>
-      <h1 style={{ fontSize: 30, padding: 0, marginLeft: 50, marginTop: 50 }}>
-        Personal Statistics
-      </h1>
-      <div class="top" id="description">
-        <div class="statistics">
-          <h2>Times watched:</h2>
-          <h2>Rating: </h2>
-          <h2>Last Watched:</h2>
-        </div>
-      </div>
-    </div>
+    <Card style={{ height: 50, width: 1310 }}>
+      <CardContent>
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="center"
+        >
+          <Grid item xs={4}>
+            <Typography variant="h5">Times Watched:</Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="h5">Rating:</Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="h5">Last Watched:</Typography>
+          </Grid>
+        </Grid>
+      </CardContent>
+    </Card>
   );
 }
 

@@ -1,19 +1,34 @@
 import React, { useState } from "react";
 import FriendsOpinion from "./FriendsOpinionTest";
+import { Card, Typography, CardContent, Grid } from "@material-ui/core";
 function Friends() {
   return (
-    <div>
-      <h1 style={{ fontSize: 30, padding: 0, marginLeft: 50, marginTop: 50 }}>
-        Friends Opinion
-      </h1>
-      <div class="top" id="description">
-        <div class="statistics">
-          <FriendsOpinion />
-          <FriendsOpinion />
-          <FriendsOpinion />
-        </div>
-      </div>
-    </div>
+    <Card style={{ width: 1310 }}>
+      <CardContent>
+        <Typography variant="h5">Reviews from you friends:</Typography>
+      </CardContent>
+      <CardContent>
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="center"
+        >
+          <Grid item>
+            <FriendsOpinion />
+          </Grid>
+          <Grid item>
+            <FriendsOpinion />
+          </Grid>
+          <Grid item>
+            <FriendsOpinion />
+          </Grid>
+          <Grid item>
+            <FriendsOpinion />
+          </Grid>
+        </Grid>
+      </CardContent>
+    </Card>
   );
 }
 

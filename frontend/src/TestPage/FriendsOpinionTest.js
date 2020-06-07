@@ -1,27 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Statistics from "./StatisticsTest";
+import {
+  CardContent,
+  Card,
+  makeStyles,
+  Typography,
+  CardActionArea,
+  CardMedia,
+} from "@material-ui/core";
+
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 300,
+    height: 800,
+  },
+  media: {
+    width: 300,
+    height: 430,
+  },
+});
+
 function FriendsOpinion() {
+  const classes = useStyles();
   return (
-    <div class="top" id="friendsOpnion">
-      <h1>Friend Name</h1>
-      <img
-        src="https://steemitimages.com/DQmQbki6acfNKT9cX3MWBxsxSTHEEk16PVeqyvGyCXSVu6i/friend.jpg"
-        alt="Friend DP"
-        style={{ width: 250 }}
-      />
-      <div class="top" id="friendStats">
-        <h2>Times watched:</h2>
-        <h2>Rating: </h2>
-        <h2>Last Watched:</h2>
-        <p style={{ fontSize: 10 }}>
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et incidunt
-          iure eveniet neque consectetur perspiciatis asperiores, voluptatum
-          ipsam. Doloribus amet exercitationem commodi magni hic consequuntur
-          vitae adipisci ut modi dolorum."
-        </p>
-      </div>
-      {/* <Statistics /> */}
-    </div>
+    <Card className={classes.root}>
+      <CardContent>
+        <CardActionArea onClick={() => window.open("https://www.luminus.com/")}>
+          <CardMedia
+            className={classes.media}
+            image="https://steemitimages.com/DQmQbki6acfNKT9cX3MWBxsxSTHEEk16PVeqyvGyCXSVu6i/friend.jpg"
+          />
+          <Typography gutterBottom variant="h5">
+            Friend Name
+          </Typography>
+        </CardActionArea>
+        <Typography gutterBottom variant="h5">
+          Times watched:
+        </Typography>
+        <Typography gutterBottom variant="h5">
+          Rating:
+        </Typography>
+        <Typography gutterBottom variant="h5">
+          Last Watched:
+        </Typography>
+        <Typography gutterBottom variant="p">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem saepe
+          eaque sed velit vero ducimus pariatur nostrum, facilis unde,
+          perferendis magnam ullam culpa laborum, ut placeat accusamus voluptas
+          at fugit minus sit commodi deserunt temporibus? Voluptate eos id quasi
+          magnam.
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
 
