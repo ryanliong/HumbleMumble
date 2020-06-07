@@ -58,6 +58,11 @@ function DescriptionImage(props) {
               OtherReviewSites
             </Typography>
           </CardActionArea>
+          <CardActionArea>
+            <Typography gutterBottom variant="h6">
+              Add Movie
+            </Typography>
+          </CardActionArea>
         </CardContent>
       </Card>
     </Box>
