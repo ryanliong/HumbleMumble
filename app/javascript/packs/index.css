@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-top: 100px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#FrontPageLogo {
+  width: 100%;
+  margin-top: 150px;
+  left: 40%;
+}
+
+body {
+  margin: 0;
+}
+
+.flex {
+  display: block;
+  position: relative;
+  margin: 0;
+  left: 30%;
+  margin-top: 5%;
+  width: 40%;
+}
+
+#SmallLogo {
+  width: 2em;
+  margin: auto;
+  display: inline-block;
+  background: white;
+  margin-right: 10px;
+  outline: solid silver;
+  outline-width: 3px;
+}
+
+.top {
+  display: block;
+  margin: 30px 50px 40px 50px;
+  border: 4px solid silver;
+  padding: 20px;
+  overflow: hidden;
+  width: 800px;
+}
+
+#DescriptionImage {
+  border-radius: 91px 0px 90px 0px;
+  -moz-border-radius: 91px 0px 90px 0px;
+  -webkit-border-radius: 91px 0px 90px 0px;
+  border: 11px double #000000;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 0;
+  width: 350px;
+}
+
+#ProfileImage {
+  border-radius: 91px 0px 90px 0px;
+  -moz-border-radius: 91px 0px 90px 0px;
+  -webkit-border-radius: 91px 0px 90px 0px;
+  border: 11px double #000000;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 0;
+  height: 350px;
+  width: 350px;
+}
+
+#review {
+  margin-left: 40px;
+  display: block;
+  font-size: small;
+  margin-top: 10px;
+}
+
+#reviewerImage {
+  width: 35px;
+  margin-right: 15px;
+  float: left;
+}
+
+#ThumbnailImage {
+  width: 70px;
+  margin-right: 15px;
+  float: left;
+}
+
+#title {
+  margin-bottom: 0;
+  padding: 0;
+  border: 0;
+}
+
+#ProfileName {
+  margin-top: 5%;
+}
+
+#AccountInfo {
+  margin-left: 21%;
+}
+
+#score {
+  font-size: 20px;
+  float: right;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#description {
+  width: 1200px;
+}
+
+.statistics h2 {
+  font-size: large;
+  display: inline;
+  padding-right: 250px;
+}
+
+.statistics h3 {
+  font-size: large;
+  display: inline;
+  padding-right: 100px;
+}
+
+#friendsOpnion {
+  height: 500px;
+  width: 300px;
+  display: inline-block;
+  margin: 0;
+  margin-right: 80px;
+  padding: 0;
+  text-align: center;
+  padding-top: 10px;
+}
+
+#friendStats {
+  height: 240px;
+  width: 250px;
+  margin: 0;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+#friendStats h2 {
+  font-size: medium;
+  padding: 0;
+  display: block;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+#movie {
+  margin: 0;
+  margin-left: 25%;
+  margin-top: 100px;
+  position: absolute;
+  width: auto;
+}
+
+link {
+  font-size: 1rem;
+}
