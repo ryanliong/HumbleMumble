@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Box } from "@material-ui/core";
 import Carousel from "react-bootstrap/Carousel";
 
-function ReviewCarousel() {
+function ContentCarousel() {
   return (
     <Box>
       <Card style={{ width: 1000 }}>
@@ -23,4 +23,4 @@ function ReviewCarousel() {
   );
 }
 
-export default ReviewCarousel;
+export default ContentCarousel;

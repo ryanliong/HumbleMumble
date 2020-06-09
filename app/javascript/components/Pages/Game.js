@@ -1,4 +1,3 @@
-// Use for testing to replace old pages incase of breaking other pages
 import React, { useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import DescriptionImageTest from "../MediaComponents/DescriptionImage";
@@ -6,9 +5,9 @@ import DescriptionTest from "../MediaComponents/Description";
 import StatisticsTest from "../MediaComponents/Statistics";
 import FriendsTest from "../MediaComponents/Friends";
 import { Container, Grid } from "@material-ui/core";
-import ReviewCarousel from "../MediaComponents/ReviewCarousel";
+import ContentCarousel from "../MediaComponents/ContentCarousel";
 
-function Game() {
+function TvShow() {
   return (
     <div>
       <NavBar name="SmallLogo" />
@@ -45,7 +44,7 @@ function Game() {
                 >
                   <Grid item xs>
                     {/* Carousel here */}
-                    <ReviewCarousel />
+                    <ContentCarousel />
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}
@@ -69,4 +68,4 @@ function Game() {
   );
 }
 
-export default Game;
+export default TvShow;
