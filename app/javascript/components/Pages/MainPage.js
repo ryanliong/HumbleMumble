@@ -27,6 +27,7 @@ function MainPage() {
               height: 800,
               marginTop: 200,
               minWidth: 800,
+              borderRadius: 5,
             }}
           >
             <Logo name="FrontPageLogo" link="/" />

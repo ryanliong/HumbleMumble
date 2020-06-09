@@ -55,7 +55,8 @@ module.exports = function(api) {
         {
           loose: true
         }
-      ],
+        ],
+
       [
         '@babel/plugin-proposal-object-rest-spread',
         {
@@ -81,7 +82,7 @@ module.exports = function(api) {
         {
           removeImport: true
         }
-      ]
+        ], ["import", { "libraryName": "antd", "style": true }]
     ].filter(Boolean)
   }
 }
