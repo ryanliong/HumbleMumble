@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import NavBar from "../NavBar/NavBar";
-import DescriptionImageTest from "./DescriptionImageTest";
-import ReviewTest from "./ReviewTest";
+import DescriptionImageTest from "./DescriptionImage";
 import DescriptionTest from "./DescriptionTest";
 import StatisticsTest from "./StatisticsTest";
 import FriendsTest from "./FriendsTest";

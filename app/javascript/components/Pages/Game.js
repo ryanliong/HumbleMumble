@@ -1,37 +1,70 @@
+// Use for testing to replace old pages incase of breaking other pages
 import React, { useState } from "react";
 import NavBar from "../NavBar/NavBar";
-import DescriptionImage from "../MediaComponents/DescriptionImage";
-import Review from "../MediaComponents/Review";
-import Description from "../MediaComponents/Description";
-import Statistics from "../MediaComponents/Statistics";
-import Friends from "../MediaComponents/Friends";
+import DescriptionImageTest from "../MediaComponents/DescriptionImage";
+import DescriptionTest from "../MediaComponents/Description";
+import StatisticsTest from "../MediaComponents/Statistics";
+import FriendsTest from "../MediaComponents/Friends";
+import { Container, Grid } from "@material-ui/core";
+import ReviewCarousel from "../MediaComponents/ReviewCarousel";
 
 function Game() {
   return (
     <div>
       <NavBar name="SmallLogo" />
-      <div id="movie">
-        <DescriptionImage
-          imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Kingdomofthecrystalskull.jpg/220px-Kingdomofthecrystalskull.jpg"
-          name="Indiana Jones and the Kingdom of the Crystal Skull"
-        ></DescriptionImage>
-        <h1 id="title">Indiana Jones(Game)</h1>
-        <Review
-          imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Kingdomofthecrystalskull.jpg/220px-Kingdomofthecrystalskull.jpg"
-          name="Indiana Jones and the Kingdom of the Crystal Skull"
-        />
-        <Review
-          imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Kingdomofthecrystalskull.jpg/220px-Kingdomofthecrystalskull.jpg"
-          name="Indiana Jones and the Kingdom of the Crystal Skull"
-        />
-        <Review
-          imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Kingdomofthecrystalskull.jpg/220px-Kingdomofthecrystalskull.jpg"
-          name="Indiana Jones and the Kingdom of the Crystal Skull"
-        />
-        <Description />
-        <Statistics />
-        <Friends />
-      </div>
+      <Container maxWidth="lg" style={{ marginTop: 150 }}>
+        <Grid
+          container
+          direction="column"
+          justify="flex-start"
+          alignItems="flex-start"
+          spacing={4}
+        >
+          <Grid item xs>
+            <Grid
+              container
+              spacing={1}
+              direction="row"
+              justify="center"
+              alignItems="flex-start"
+            >
+              <Grid item xs>
+                {/* Top left image here */}
+                <DescriptionImageTest
+                  imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Kingdomofthecrystalskull.jpg/220px-Kingdomofthecrystalskull.jpg"
+                  name="Indiana Jones and the Kingdom of the Crystal Skull"
+                ></DescriptionImageTest>
+              </Grid>
+              <Grid item xs={9}>
+                <Grid
+                  container
+                  direction="column"
+                  justify="flex-start"
+                  alignItems="stretch"
+                  spacing={2}
+                >
+                  <Grid item xs>
+                    {/* Carousel here */}
+                    <ReviewCarousel />
+                  </Grid>
+                  <Grid item xs>
+                    {/* Description here */}
+                    <DescriptionTest />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs>
+            {/* Statistics here */}
+            <StatisticsTest />
+          </Grid>
+          <Grid item xs>
+            {/* Friends reviews here */}
+            <FriendsTest />
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 }

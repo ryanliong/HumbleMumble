@@ -5,7 +5,7 @@ function Friends() {
   return (
     <Card style={{ width: 1310 }}>
       <CardContent>
-        <Typography variant="h5">Reviews from you friends:</Typography>
+        <Typography variant="h5">Reviews from your friends:</Typography>
       </CardContent>
       <CardContent>
         <Grid
