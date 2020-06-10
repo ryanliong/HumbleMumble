@@ -5,7 +5,7 @@ import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 function OptionalCarousel() {
   return (
     <Carousel
-      //   autoplay
+      autoplay
       autoplaySpeed={100}
       slidesToShow={3}
       draggable={true}
