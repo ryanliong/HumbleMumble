@@ -49,7 +49,7 @@ function TvShow() {
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}
-                    <Description />
+                    <Description h={185} title="Description" />
                   </Grid>
                 </Grid>
               </Grid>

@@ -7,6 +7,9 @@ import Friends from "../MediaComponents/Friends";
 import { Container, Grid } from "@material-ui/core";
 import ContentCarousel from "../MediaComponents/ContentCarousel";
 import InformationBoard from "../MediaComponents/InformationBoard";
+import AccountStatistic from "../MediaComponents/AccountStatistic";
+import Recommendation from "../MediaComponents/Recommendation";
+import FriendList from "../MediaComponents/FriendList";
 
 function Test() {
   return (
@@ -32,7 +35,7 @@ function Test() {
                 {/* Top left image here */}
                 <DescriptionImage
                   imgUrl="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                  name="Indiana Jones and the Kingdom of the Crystal Skull"
+                  name="Profile picture"
                   type="game"
                 ></DescriptionImage>
               </Grid>
@@ -45,25 +48,28 @@ function Test() {
                   spacing={2}
                 >
                   <Grid item xs>
-                    {/* Carousel here */}
-                    {/* <ContentCarousel /> */}
+                    {/* InformationBoard here */}
                     <InformationBoard></InformationBoard>
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}
-                    {/* <Description /> */}
+                    <Description h={275} title="Bio" />
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
           <Grid item xs>
-            {/* Statistics here */}
-            {/* <Statistics /> */}
+            {/* AccountStatistic here */}
+            <AccountStatistic></AccountStatistic>
           </Grid>
           <Grid item xs>
-            {/* Friends reviews here */}
-            {/* <Friends /> */}
+            {/* Recommendation here */}
+            <Recommendation />
+          </Grid>
+          <Grid item xs>
+            {/* FriendList here */}
+            <FriendList />
           </Grid>
         </Grid>
       </Container>

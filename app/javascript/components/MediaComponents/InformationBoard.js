@@ -4,7 +4,7 @@ import InformationCard from "./InformationCard";
 
 function InformationBoard(props) {
   return (
-    <Box style={{ width: 1000 }}>
+    <Box style={{ width: 1020 }}>
       <Grid
         container
         direction="row"

@@ -9,12 +9,12 @@ import {
   Box,
 } from "@material-ui/core";
 
-function Description() {
+function Description(props) {
   return (
-    <Card style={{ width: 1000, height: 185 }}>
+    <Card style={{ width: 1000, height: props.h }}>
       <CardContent>
         <Typography gutterBottom variant="h5">
-          Description
+          {props.title}
         </Typography>
         <Typography gutterBottom variant="p">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum nam
