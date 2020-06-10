@@ -10,6 +10,7 @@ import InformationBoard from "../MediaComponents/InformationBoard";
 import AccountStatistic from "../MediaComponents/AccountStatistic";
 import Recommendation from "../MediaComponents/Recommendation";
 import FriendList from "../MediaComponents/FriendList";
+import InfiniteListExample from "../MediaComponents/InfiniteListExample";
 
 function Test() {
   return (
@@ -69,7 +70,7 @@ function Test() {
           </Grid>
           <Grid item xs>
             {/* FriendList here */}
-            <FriendList />
+            <InfiniteListExample></InfiniteListExample>
           </Grid>
         </Grid>
       </Container>

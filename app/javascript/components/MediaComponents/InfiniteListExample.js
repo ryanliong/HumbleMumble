@@ -1,3 +1,4 @@
+import React from "react";
 import { List, message, Avatar, Spin } from "antd";
 import reqwest from "reqwest";
 
@@ -92,4 +93,4 @@ class InfiniteListExample extends React.Component {
   }
 }
 
-// export default InfiniteListExample;
+export default InfiniteListExample;
