@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import NavBar from "../NavBar/NavBar";
-import DescriptionImageTest from "../MediaComponents/DescriptionImage";
-import DescriptionTest from "../MediaComponents/Description";
-import StatisticsTest from "../MediaComponents/Statistics";
-import FriendsTest from "../MediaComponents/Friends";
+import DescriptionImage from "../MediaComponents/DescriptionImage";
+import Description from "../MediaComponents/Description";
+import Statistics from "../MediaComponents/Statistics";
+import Friends from "../MediaComponents/Friends";
 import { Container, Grid } from "@material-ui/core";
 import ContentCarousel from "../MediaComponents/ContentCarousel";
 
-function TvShow() {
+function Movie() {
   return (
     <div>
       <NavBar name="SmallLogo" />
@@ -29,10 +29,11 @@ function TvShow() {
             >
               <Grid item xs>
                 {/* Top left image here */}
-                <DescriptionImageTest
+                <DescriptionImage
                   imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Kingdomofthecrystalskull.jpg/220px-Kingdomofthecrystalskull.jpg"
                   name="Indiana Jones and the Kingdom of the Crystal Skull"
-                ></DescriptionImageTest>
+                  type="movie"
+                ></DescriptionImage>
               </Grid>
               <Grid item xs={9}>
                 <Grid
@@ -48,7 +49,7 @@ function TvShow() {
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}
-                    <DescriptionTest />
+                    <Description />
                   </Grid>
                 </Grid>
               </Grid>
@@ -56,11 +57,11 @@ function TvShow() {
           </Grid>
           <Grid item xs>
             {/* Statistics here */}
-            <StatisticsTest />
+            <Statistics />
           </Grid>
           <Grid item xs>
             {/* Friends reviews here */}
-            <FriendsTest />
+            <Friends />
           </Grid>
         </Grid>
       </Container>
@@ -68,4 +69,4 @@ function TvShow() {
   );
 }
 
-export default TvShow;
+export default Movie;

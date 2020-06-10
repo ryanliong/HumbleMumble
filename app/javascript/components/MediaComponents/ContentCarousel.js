@@ -8,6 +8,7 @@ function ContentCarousel() {
       <Card style={{ width: 1000 }}>
         <Carousel
           autoplay
+          autoplaySpeed={100}
           style={{
             width: 1000,
             height: 500,
@@ -18,16 +19,16 @@ function ContentCarousel() {
           }}
         >
           <div>
-            <h3>1</h3>
+            <h3>This</h3>
           </div>
           <div>
-            <h3>2</h3>
+            <h3>is</h3>
           </div>
           <div>
-            <h3>3</h3>
+            <h3>fast</h3>
           </div>
           <div>
-            <h3>4</h3>
+            <h3>!</h3>
           </div>
         </Carousel>
       </Card>

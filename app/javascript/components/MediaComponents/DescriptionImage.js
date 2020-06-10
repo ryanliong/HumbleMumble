@@ -22,6 +22,28 @@ const useStyles = makeStyles({
 
 function DescriptionImage(props) {
   const classes = useStyles();
+  const actions = (x, y) => (
+    <CardActionArea onClick={y}>
+      <Typography gutterBottom variant="h6">
+        {x}
+      </Typography>
+    </CardActionArea>
+  );
+
+  const moviePreset = [
+    actions("Rotten Tomatoes", () =>
+      window.open("https://www.rottentomatoes.com")
+    ),
+    actions("Imdb", () => window.open("https://www.imdb.com/")),
+    actions("OtherReviewSite", () => window.open(" https://www.luminus.com/")),
+  ];
+
+  const personPreset = [
+    actions("Add Movie", () => console.log("Add movie button working")),
+    actions("Add Game", () => console.log("Add game button working")),
+    actions("Add Tv-Show", () => console.log("Add tv-show button working")),
+  ];
+
   return (
     <Box>
       <Card className={classes.root}>
@@ -37,32 +59,9 @@ function DescriptionImage(props) {
         </CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h3">
-            Indiana Jones
+            {props.type === "movie" ? "Indiana Jones" : "Persons name"}
           </Typography>
-          <CardActionArea
-            onClick={() => window.open("https://www.rottentomatoes.com/")}
-          >
-            <Typography gutterBottom variant="h6">
-              Rotten Tomatoes
-            </Typography>
-          </CardActionArea>
-          <CardActionArea onClick={() => window.open("https://www.imdb.com/")}>
-            <Typography gutterBottom variant="h6">
-              Imdb
-            </Typography>
-          </CardActionArea>
-          <CardActionArea
-            onClick={() => window.open("https://www.luminus.com/")}
-          >
-            <Typography gutterBottom variant="h6">
-              OtherReviewSites
-            </Typography>
-          </CardActionArea>
-          <CardActionArea>
-            <Typography gutterBottom variant="h6">
-              Add Movie
-            </Typography>
-          </CardActionArea>
+          {props.type === "movie" ? moviePreset : personPreset}
         </CardContent>
       </Card>
     </Box>
