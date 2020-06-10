@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import MainPage from "./MainPage/MainPage";
+import MainPage from "./Pages/MainPage";
 import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 import Account from "./Pages/Account";
 import Movie from "./Pages/Movie";

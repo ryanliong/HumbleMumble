@@ -1,25 +1,31 @@
 import React, { useState } from "react";
+import {
+  Card,
+  makeStyles,
+  CardMedia,
+  CardActionArea,
+  CardContent,
+  Typography,
+  Box,
+} from "@material-ui/core";
 
-function Description() {
+function Description(props) {
   return (
-    <div>
-      <h1 style={{ fontSize: 30, padding: 0, marginLeft: 50, marginTop: 50 }}>
-        Description
-      </h1>
-      <p class="top" id="description">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis officiis
-        suscipit odit nihil sapiente. Error iure laudantium sed ratione qui amet
-        at quia, doloremque ipsum nisi a odio quos dignissimos! Fugiat
-        voluptatibus iste labore cumque obcaecati hic unde, perferendis placeat
-        corporis soluta dolores expedita neque repellendus alias iure tenetur
-        facere cum incidunt a deleniti culpa consequuntur. Facilis praesentium
-        distinctio ab consequatur reiciendis. Corrupti hic autem voluptate quo
-        reiciendis tenetur voluptatibus maiores officia. Eligendi fuga eius
-        ipsum hic illo voluptas est, facere sunt ducimus placeat aliquid nisi
-        ipsam nam beatae quas omnis recusandae voluptate qui veniam iure.
-        Adipisci quia fugit nemo.
-      </p>
-    </div>
+    <Card style={{ width: 1000, height: props.h }}>
+      <CardContent>
+        <Typography gutterBottom variant="h5">
+          {props.title}
+        </Typography>
+        <Typography gutterBottom variant="p">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum nam
+          quos sed ratione nemo illo enim, quibusdam impedit itaque maiores sint
+          illum, distinctio saepe error qui assumenda non alias id. Quia earum
+          voluptate ipsum minus? Quibusdam tenetur doloremque suscipit, eos,
+          voluptate necessitatibus, eius tempora rem debitis sed facere quam
+          sint!
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
 

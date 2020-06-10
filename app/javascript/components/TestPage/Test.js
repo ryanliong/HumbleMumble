@@ -1,16 +1,17 @@
-// Use for testing to replace old pages incase of breaking othe pages
-
 import React, { useState } from "react";
 import NavBar from "../NavBar/NavBar";
-import DescriptionImageTest from "./DescriptionImageTest";
-import ReviewTest from "./ReviewTest";
-import DescriptionTest from "./DescriptionTest";
-import StatisticsTest from "./StatisticsTest";
-import FriendsTest from "./FriendsTest";
+import DescriptionImage from "../MediaComponents/DescriptionImage";
+import Description from "../MediaComponents/Description";
+import Statistics from "../MediaComponents/Statistics";
+import Friends from "../MediaComponents/Friends";
 import { Container, Grid } from "@material-ui/core";
-import ReviewCarousel from "./ReviewCarousel";
+import ContentCarousel from "../MediaComponents/ContentCarousel";
+import InformationBoard from "../MediaComponents/InformationBoard";
+import AccountStatistic from "../MediaComponents/AccountStatistic";
+import Recommendation from "../MediaComponents/Recommendation";
+import FriendList from "../MediaComponents/FriendList";
 
-function Movie() {
+function Test() {
   return (
     <div>
       <NavBar name="SmallLogo" />
@@ -31,10 +32,12 @@ function Movie() {
               alignItems="flex-start"
             >
               <Grid item xs>
-                <DescriptionImageTest
-                  imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Kingdomofthecrystalskull.jpg/220px-Kingdomofthecrystalskull.jpg"
-                  name="Indiana Jones and the Kingdom of the Crystal Skull"
-                ></DescriptionImageTest>
+                {/* Top left image here */}
+                <DescriptionImage
+                  imgUrl="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                  name="Profile picture"
+                  type="game"
+                ></DescriptionImage>
               </Grid>
               <Grid item xs={9}>
                 <Grid
@@ -45,20 +48,28 @@ function Movie() {
                   spacing={2}
                 >
                   <Grid item xs>
-                    <ReviewCarousel />
+                    {/* InformationBoard here */}
+                    <InformationBoard></InformationBoard>
                   </Grid>
                   <Grid item xs>
-                    <DescriptionTest />
+                    {/* Description here */}
+                    <Description h={275} title="Bio" />
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
           <Grid item xs>
-            <StatisticsTest />
+            {/* AccountStatistic here */}
+            <AccountStatistic></AccountStatistic>
           </Grid>
           <Grid item xs>
-            <FriendsTest />
+            {/* Recommendation here */}
+            <Recommendation />
+          </Grid>
+          <Grid item xs>
+            {/* FriendList here */}
+            <FriendList />
           </Grid>
         </Grid>
       </Container>
@@ -66,4 +77,4 @@ function Movie() {
   );
 }
 
-export default Movie;
+export default Test;

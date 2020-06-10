@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "../components/App";
 import * as serviceWorker from "../components/serviceWorker";
+import "antd/dist/antd.css";
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
