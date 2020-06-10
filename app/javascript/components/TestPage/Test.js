@@ -4,7 +4,13 @@ import DescriptionImage from "../MediaComponents/DescriptionImage";
 import Description from "../MediaComponents/Description";
 import Statistics from "../MediaComponents/Statistics";
 import Friends from "../MediaComponents/Friends";
-import { Container, Grid } from "@material-ui/core";
+import {
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+} from "@material-ui/core";
 import ContentCarousel from "../MediaComponents/ContentCarousel";
 import InformationBoard from "../MediaComponents/InformationBoard";
 import AccountStatistic from "../MediaComponents/AccountStatistic";
@@ -70,7 +76,17 @@ function Test() {
           </Grid>
           <Grid item xs>
             {/* FriendList here */}
-            <InfiniteListExample></InfiniteListExample>
+            <Card style={{ width: 1310 }}>
+              <CardContent style={{ padding: 0 }}>
+                <Typography
+                  variant="h5"
+                  style={{ paddingTop: 16, paddingLeft: 16 }}
+                >
+                  Friend List
+                </Typography>
+                <InfiniteListExample></InfiniteListExample>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
       </Container>
