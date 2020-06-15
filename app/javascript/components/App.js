@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
 import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 import Account from "./Pages/Account";
@@ -12,12 +12,14 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Route exact path="/" component={MainPage} />
-        <Route exact path="/Account" component={Account} />
-        <Route exact path="/Movie" component={Movie} />
-        <Route exact path="/Game" component={Game} />
-        <Route exact path="/Tv-Show" component={TVShow} />
-        <Route exact path="/Test" component={Test} />
+        <Switch>
+          <Route exact path="/" component={MainPage} />
+          <Route exact path="/Account" component={Account} />
+          <Route exact path="/Movie/:slug" component={Movie} />
+          <Route exact path="/Game" component={Game} />
+          <Route exact path="/Tv-Show" component={TVShow} />
+          <Route exact path="/Test" component={Test} />
+        </Switch>
       </BrowserRouter>
     );
   }
