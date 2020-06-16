@@ -2,6 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import auth0Client from "./Auth";
 import SearchBar from "../MediaComponents/SearchBar";
+import CenteredModal from "../MediaComponents/CenteredModal";
 
 function NavBar(props) {
   const signOut = () => {
@@ -21,7 +22,7 @@ function NavBar(props) {
       <Link to="/Game">Game</Link>
       <Link to="/Tv-Show">Tv-Show</Link>
       <Link to="/Test">Test</Link>
-
+      <CenteredModal></CenteredModal>
       {!auth0Client.isAuthenticated() && (
         <button className="btn btn-dark" onClick={auth0Client.signIn}>
           Sign In
