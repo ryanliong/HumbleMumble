@@ -67,7 +67,7 @@ function Movie() {
                 >
                   <Grid item xs>
                     {/* Carousel here */}
-                    <ContentCarousel />
+                    <ContentCarousel movieId={movie.id} />
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}
