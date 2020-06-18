@@ -22,6 +22,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Clear database everytime running rake db:seed
+gem 'database_cleaner'
+
+# Handle serialization of models to be stored as JSON objects
+gem 'fast_jsonapi'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

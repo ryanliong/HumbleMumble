@@ -59,7 +59,7 @@ function DescriptionImage(props) {
         </CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h3">
-            {props.type === "movie" ? "Indiana Jones" : "Persons name"}
+            {props.type === "movie" ? props.name : "Persons name"}
           </Typography>
           {props.type === "movie" ? moviePreset : personPreset}
         </CardContent>
