@@ -3,13 +3,11 @@ import { List, Menu } from "antd";
 import { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import CenteredModal from "../MediaComponents/CenteredModal";
-import auth0Client from "../NavBar/Auth";
-import { MenuItem } from "@material-ui/core";
-import SearchBar from "../MediaComponents/SearchBar";
+import auth0Client from "./Auth";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
-function Test(props) {
-  const [currentPage, changePage] = useState("account");
+function NavBar2(props) {
+  const [currentPage, changePage] = useState(props.page);
 
   const handleClick = (nextPage) => changePage(nextPage);
 
@@ -133,4 +131,4 @@ function Test(props) {
   );
 }
 
-export default withRouter(Test);
+export default withRouter(NavBar2);
