@@ -17,12 +17,13 @@ import AccountStatistic from "../MediaComponents/AccountStatistic";
 import Recommendation from "../MediaComponents/Recommendation";
 import FriendList from "../MediaComponents/FriendList";
 import InfiniteListExample from "../MediaComponents/InfiniteListExample";
+import NavBar2 from "../NavBar/NavBar2";
 
-function Test() {
+function Account() {
   return (
     <div>
-      <NavBar name="SmallLogo" />
-      <Container maxWidth="lg" style={{ marginTop: 150 }}>
+      <NavBar2 page="account" />
+      <Container maxWidth="lg" style={{ marginTop: 50 }}>
         <Grid
           container
           direction="column"
@@ -94,4 +95,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default Account;

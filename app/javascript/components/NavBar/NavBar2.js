@@ -99,6 +99,9 @@ function NavBar2(props) {
         <Menu.Item key="test" style={centerItem}>
           <Link to="/Test">Test</Link>
         </Menu.Item>
+        <Menu.Item key="results" style={centerItem}>
+          <Link to="/Results">Results</Link>
+        </Menu.Item>
         <Menu.Item>
           <CenteredModal type="List"></CenteredModal>
         </Menu.Item>
