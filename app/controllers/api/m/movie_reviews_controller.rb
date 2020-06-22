@@ -30,7 +30,7 @@ module Api
 			private
 
 			def movieReview_params
-				params.require(:movieReview).permit(:name, :publication, 	:date, :description, :movie_id)	
+				params.require(:movieReview).permit(:name, :publication, 	:date, :description, :score, :link, :movie_id)	
 			end
 		end
 	end

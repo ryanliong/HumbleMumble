@@ -14,7 +14,7 @@ module Api
 			end
 
 			def create
-				movie = Movie.new(account_params)
+				movie = Movie.new(movie_params)
 
 				if movie.save
 					render json: MovieSerializer.new(movie).serialized_json
@@ -46,7 +46,7 @@ module Api
 			private
 
 			def movie_params
-				params.require(:movie).permit(:title, :image_url, :description)
+				params.require(:movie).permit(:title, :image_url, :description, :score)
 			end
 
 			def options
