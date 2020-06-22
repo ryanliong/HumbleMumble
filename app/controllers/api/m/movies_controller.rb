@@ -2,7 +2,7 @@ module Api
 	module M
 		class MoviesController < ApplicationController
 			def index
-				movies = Movies.all
+				movies = Movie.all
 
 				render json: MovieSerializer.new(movies, options).serialized_json
 			end
@@ -26,7 +26,7 @@ module Api
 			def update
 				movie = Movie.find_by(slug: params[:slug])
 
-				if movie.update(account_params)
+				if movie.update(movie_params)
 					render json: MovieSerializer.new(movie, options).serialized_json
 				else 
 					render json: {error: movie.errors.messages}, status: 422
@@ -52,6 +52,6 @@ module Api
 			def options
 				@options || {include: %i[movie_reviews]}
 			end
-
+		end 
 	end
 end	

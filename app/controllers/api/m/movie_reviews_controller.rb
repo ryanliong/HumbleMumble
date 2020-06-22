@@ -2,7 +2,7 @@ module Api
 	module M
 		class MovieReviewsController < ApplicationController
 			def index
-				movieReviews = MovieReviews.all
+				movieReviews = MovieReview.all
 
 				render json: MovieReviewSerializer.new(movieReviews).serialized_json
 			end
