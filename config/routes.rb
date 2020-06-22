@@ -5,9 +5,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :m do 
-      resources :movies, param :slug
+      resources :movies, param: :slug
       resources :movie_reviews
     end
-
+  end
+  
   match '*path', to: 'pages#index', via: :all
 end

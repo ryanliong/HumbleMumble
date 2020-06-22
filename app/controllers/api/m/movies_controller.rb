@@ -50,7 +50,7 @@ module Api
 			end
 
 			def options
-				@options || {include: %i[games]}
+				@options || {include: %i[movie_reviews]}
 			end
 
 	end
