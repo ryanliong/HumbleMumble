@@ -8,7 +8,7 @@ import { Container, Grid } from "@material-ui/core";
 import ContentCarousel from "../MediaComponents/ContentCarousel";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import NavBar2 from "../NavBar/NavBar2";
 function Movie() {
   let { slug } = useParams();
   const searchTerm = decodeURIComponent(slug);
@@ -32,8 +32,8 @@ function Movie() {
 
   return (
     <div>
-      <NavBar name="SmallLogo" />
-      <Container maxWidth="lg" style={{ marginTop: 150 }}>
+      <NavBar2 page="movie" />
+      <Container maxWidth="lg" style={{ marginTop: 50 }}>
         <Grid
           container
           direction="column"

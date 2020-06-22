@@ -1,8 +1,7 @@
 import React from "react";
-import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
 import Registration from "./Registation";
-import { Button } from "antd";
+import { Button, Modal } from "antd";
 import MediaList from "./MediaList";
 
 function CenteredModal(props) {
@@ -22,10 +21,12 @@ function CenteredModal(props) {
         {props.type == "Registration" ? "Register" : "List"}
       </Button>
       <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+        title="List"
+        visible={open}
+        footer={null}
+        onCancel={handleClose}
+        centered={true}
+        width={1300}
       >
         {props.type == "Registration" ? (
           <Registration close={handleClose}></Registration>

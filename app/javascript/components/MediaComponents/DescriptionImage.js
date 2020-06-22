@@ -7,6 +7,7 @@ import {
   CardContent,
   Typography,
   Box,
+  Link,
 } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -22,10 +23,10 @@ const useStyles = makeStyles({
 
 function DescriptionImage(props) {
   const classes = useStyles();
-  const actions = (x, y) => (
-    <CardActionArea onClick={y}>
+  const actions = (text, link) => (
+    <CardActionArea onClick={link}>
       <Typography gutterBottom variant="h6">
-        {x}
+        {text}
       </Typography>
     </CardActionArea>
   );

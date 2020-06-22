@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
+import NavBar2 from "../NavBar/NavBar2";
 import Logo from "../MediaComponents/Logo";
 import SearchBar from "../MediaComponents/SearchBar";
 import Container from "@material-ui/core/Container";
@@ -8,7 +8,7 @@ import { Box } from "@material-ui/core";
 function MainPage() {
   return (
     <div>
-      <NavBar name="SmallLogo" />
+      <NavBar2 page="home"></NavBar2>
       <div
         style={{
           backgroundImage: `url(https://images.pexels.com/photos/109669/pexels-photo-109669.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)`,
@@ -25,7 +25,7 @@ function MainPage() {
               backgroundColor: "rgba(255, 255, 255, 0.75)",
               width: "100%",
               height: 800,
-              marginTop: 200,
+              marginTop: 100,
               minWidth: 800,
               borderRadius: 5,
             }}

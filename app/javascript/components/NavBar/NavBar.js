@@ -22,7 +22,6 @@ function NavBar(props) {
       <Link to="/Game">Game</Link>
       <Link to="/Tv-Show">Tv-Show</Link>
       <Link to="/Test">Test</Link>
-      <CenteredModal type="Registration"></CenteredModal>
       <CenteredModal type="List"></CenteredModal>
       {!auth0Client.isAuthenticated() && (
         <button className="btn btn-dark" onClick={auth0Client.signIn}>

@@ -6,12 +6,13 @@ import Statistics from "../MediaComponents/Statistics";
 import Friends from "../MediaComponents/Friends";
 import { Container, Grid } from "@material-ui/core";
 import ContentCarousel from "../MediaComponents/ContentCarousel";
+import NavBar2 from "../NavBar/NavBar2";
 
 function TvShow() {
   return (
     <div>
-      <NavBar name="SmallLogo" />
-      <Container maxWidth="lg" style={{ marginTop: 150 }}>
+      <NavBar2 page="tv-show" />
+      <Container maxWidth="lg" style={{ marginTop: 50 }}>
         <Grid
           container
           direction="column"

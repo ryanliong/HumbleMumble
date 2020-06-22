@@ -7,6 +7,7 @@ import Movie from "./Pages/Movie";
 import Game from "./Pages/Game";
 import TVShow from "./Pages/Tv-Show";
 import Test from "./TestPage/Test";
+import Results from "./Pages/Results";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Route exact path="/Game" component={Game} />
           <Route exact path="/Tv-Show" component={TVShow} />
           <Route exact path="/Test" component={Test} />
+          <Route exact path="/Results" component={Results} />
         </Switch>
       </BrowserRouter>
     );

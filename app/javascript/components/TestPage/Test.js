@@ -1,82 +1,16 @@
 import React from "react";
-import { Box, Grid } from "@material-ui/core";
-import { List } from "antd";
-
+import { Container, Typography } from "@material-ui/core";
+import Logo from "../MediaComponents/Logo";
 function Test() {
-  const testData = [
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-    "movie",
-    "game",
-    "tv-show",
-  ];
   return (
-    <Box>
-      <Grid container direction="row" justify="center" alignItems="flex-start">
-        <Grid item xs={6}>
-          <List
-            size="small"
-            bordered
-            dataSource={testData}
-            renderItem={(item) => <List.Item>{item}</List.Item>}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <List
-            size="small"
-            bordered
-            dataSource={testData}
-            renderItem={(item) => <List.Item>{item}</List.Item>}
-          />
-        </Grid>
-      </Grid>
-    </Box>
+    <div>
+      <Container>
+        <Typography variant="h1">Error 404 page not found!</Typography>
+        <a href="/">
+          <img src="/MH.png" alt="HumbleMumble" style={{ marginLeft: 70 }} />
+        </a>
+      </Container>
+    </div>
   );
 }
 
