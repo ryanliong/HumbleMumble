@@ -21,10 +21,12 @@ function CenteredModal(props) {
         {props.type == "Registration" ? "Register" : "List"}
       </Button>
       <Modal
-        title="Basic Modal"
+        title="List"
         visible={open}
         footer={null}
         onCancel={handleClose}
+        centered={true}
+        width={1300}
       >
         {props.type == "Registration" ? (
           <Registration close={handleClose}></Registration>
