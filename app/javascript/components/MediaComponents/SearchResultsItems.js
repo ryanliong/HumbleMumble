@@ -8,7 +8,7 @@ import {
   Grid,
 } from "@material-ui/core";
 
-function SearchResultsItem() {
+function SearchResultsItem(props) {
   return (
     <Card>
       <Grid
@@ -19,7 +19,7 @@ function SearchResultsItem() {
       >
         <Grid item>
           <CardMedia
-            image="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            image={props.attributes.image_url}
             style={{
               width: 200,
               height: 300,
@@ -28,10 +28,10 @@ function SearchResultsItem() {
         </Grid>
         <Grid item>
           <CardContent>
-            <Typography>Title</Typography>
+            <Typography>{props.attributes.title}</Typography>
           </CardContent>
           <CardContent>
-            <Typography>Description</Typography>
+            <Typography>{props.attributes.overview}</Typography>
           </CardContent>
           <CardContent>
             <Typography>Misc</Typography>
