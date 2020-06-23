@@ -9,6 +9,7 @@ import ContentCarousel from "../MediaComponents/ContentCarousel";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import NavBar2 from "../NavBar/NavBar2";
+
 function Movie() {
   let { slug } = useParams();
   const searchTerm = decodeURIComponent(slug);
