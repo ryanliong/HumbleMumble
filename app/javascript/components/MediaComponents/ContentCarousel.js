@@ -79,7 +79,7 @@ function ContentCarousel(props) {
       <Card style={{ width: 1000 }}>
         <Carousel
           autoplay
-          autoplaySpeed={1000}
+          autoplaySpeed={3000}
           style={{
             width: 1000,
             height: 500,

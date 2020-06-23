@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Container, Typography } from "@material-ui/core";
-import Logo from "../MediaComponents/Logo";
+import { useParams } from "react-router";
 function Test() {
+  let { slug } = useParams();
+  const searchTerm = decodeURIComponent(slug);
+  const URIsearchTerm = encodeURI(slug);
+
+  const axios = require("axios");
+
   return (
     <div>
       <Container>

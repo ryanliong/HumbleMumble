@@ -4,12 +4,19 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Redirect } from "react-router";
 
 function SearchBar(props) {
-  const options = ["The Avengers", "Game", "Tv-Show"];
+  const movies = ["The Avengers", "Game", "Tv-Show"];
+  const games = ["Grand Theft Auto V"];
+  const tvShow = [];
   const [text, changeText] = useState("");
-  const catogery = ["Movie", "Game", "Tv-Show"];
+  const category = ["Movie", "Game", "Tv-Show"];
+  const options = movies.concat(games).concat(tvShow);
 
-  if (options.includes(text)) {
-    return <Redirect to={"/" + catogery[0] + "/" + text} />;
+  if (movies.includes(text)) {
+    return <Redirect to={"/" + category[0] + "/" + text} />;
+  } else if (games.includes(text)) {
+    return <Redirect to={"/" + category[1] + "/" + text} />;
+  } else if (tvShow.includes(text)) {
+    return <Redirect to={"/" + category[2] + "/" + text} />;
   }
 
   return (
