@@ -17,7 +17,7 @@ class App extends Component {
           <Route exact path="/" component={MainPage} />
           <Route exact path="/Account" component={Account} />
           <Route exact path="/Movie/:slug" component={Movie} />
-          <Route exact path="/Game" component={Game} />
+          <Route exact path="/Game/:game" component={Game} />
           <Route exact path="/Tv-Show" component={TVShow} />
           <Route exact path="/Test" component={Test} />
           <Route exact path="/Results/:slug" component={Results} />
