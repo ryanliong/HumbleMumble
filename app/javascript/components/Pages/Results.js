@@ -33,14 +33,16 @@ function Results() {
       title: item.title,
       overview: item.overview,
       image_url: "http://image.tmdb.org/t/p/w300" + item.poster_path,
+      id: item.id,
     };
   });
 
   const searchResultItem = [];
-  console.log(movie);
 
   for (let i = 0; i < movie.length; i += 2) {
     if (i + 2 < movie.length) {
+      const movieID1 = () => localStorage.setItem("movieID", movie[i].id);
+      const movieID2 = () => localStorage.setItem("movieID", movie[i + 1].id);
       searchResultItem.push(
         <Grid item xs>
           <Grid
@@ -51,12 +53,18 @@ function Results() {
             spacing={1}
           >
             <Grid item xs={6}>
-              <Link to={"/Movie/" + encodeURI(movie[i].title)}>
+              <Link
+                to={"/Movie/" + encodeURI(movie[i].title)}
+                onClick={movieID1}
+              >
                 <SearchResultsItem attributes={movie[i]}></SearchResultsItem>
               </Link>
             </Grid>
             <Grid item xs={6}>
-              <Link to={"/Movie/" + encodeURI(movie[i + 1].title)}>
+              <Link
+                to={"/Movie/" + encodeURI(movie[i + 1].title)}
+                onClick={movieID2}
+              >
                 <SearchResultsItem
                   attributes={movie[i + 1]}
                 ></SearchResultsItem>
