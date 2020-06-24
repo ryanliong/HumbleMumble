@@ -14,22 +14,28 @@ function Movie() {
   let { slug } = useParams();
   const searchTerm = decodeURIComponent(slug);
   const URIsearchTerm = encodeURI(slug);
-  const [Movies, setMovies] = useState([]);
+  const [Movies, setMovies] = useState({});
+  const [RT, setRT] = useState([]);
+
+  const movieID = localStorage.getItem("movieID");
 
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=f6fef0b6b13ff8c438075fdee50bb9a8&language=en-US&query=${URIsearchTerm}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/movie/${movieID}?api_key=f6fef0b6b13ff8c438075fdee50bb9a8&language=en-US`
       )
-      .then((resp) => setMovies(resp.data.results))
+      .then((resp) => setMovies(resp.data))
       .catch((resp) => console.log(resp));
-  }, [Movies.length]);
 
-  const movie = Movies.filter((item) => item.title === searchTerm).reduce(
-    (prev, curr) => (prev.popularity > curr.popularity ? prev : curr),
-    0
-  ); //Filter still provides old movies <2000 with the exact same name, reduce further for the highest popularity
-  console.log(movie);
+    axios
+      .get(`/movie/${URIsearchTerm}`)
+      .then((resp) => setRT(resp.data))
+      .catch((resp) => console.log(resp));
+  }, [RT.length]);
+
+  const movie = Movies;
+  //Filter still provides old movies <2000 with the exact same name, reduce further for the highest popularity
+  console.log(RT);
 
   return (
     <div>
@@ -68,7 +74,7 @@ function Movie() {
                 >
                   <Grid item xs>
                     {/* Carousel here */}
-                    <ContentCarousel movieId={movie.id} />
+                    <ContentCarousel movieId={movie.id} RT={RT} />
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}

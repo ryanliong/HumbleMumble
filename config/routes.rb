@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       resources :movie_reviews
     end
   end
+
+  resources :movie, param: :slug
   
   match '*path', to: 'pages#index', via: :all
 end
