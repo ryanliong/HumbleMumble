@@ -14,7 +14,7 @@ function MainPage() {
           backgroundImage: `url(https://images.pexels.com/photos/109669/pexels-photo-109669.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)`,
           minHeight: "100%",
           minWidth: "100%",
-          position: "fixed",
+          position: "absolute",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}

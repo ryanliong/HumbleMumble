@@ -32,7 +32,10 @@ function Results() {
     return {
       title: item.title,
       overview: item.overview,
-      image_url: "http://image.tmdb.org/t/p/w300" + item.poster_path,
+      image_url:
+        item.poster_path == null
+          ? item.poster_path
+          : "http://image.tmdb.org/t/p/w300" + item.poster_path,
       id: item.id,
     };
   });
@@ -75,22 +78,40 @@ function Results() {
       );
     }
   }
+  const topItem = Movies[0];
 
+  const backgroundUrl =
+    topItem != null &&
+    "http://image.tmdb.org/t/p/original" + topItem.backdrop_path;
+  console.log(backgroundUrl);
   return (
     <div>
       <NavBar2 page="results"></NavBar2>
-      <Container style={{ marginTop: 50 }}>
-        <Typography variant="h3">Movies</Typography>
-        <Grid
-          container
-          direction="column"
-          justify="flex-end"
-          alignItems="stretch"
-          spacing={2}
-        >
-          {searchResultItem}
-        </Grid>
-      </Container>
+      <div
+        style={{
+          backgroundImage: `url(${backgroundUrl})`,
+          minHeight: "100%",
+          minWidth: "100%",
+          position: "absolute",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <Container style={{ marginTop: 20 }}>
+          <Typography variant="h2" style={{ color: "white" }}>
+            Movies
+          </Typography>
+          <Grid
+            container
+            direction="column"
+            justify="flex-end"
+            alignItems="stretch"
+            spacing={2}
+          >
+            {searchResultItem}
+          </Grid>
+        </Container>
+      </div>
     </div>
   );
 }
