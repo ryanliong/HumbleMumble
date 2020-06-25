@@ -31,7 +31,7 @@ function MainPage() {
             }}
           >
             <Logo name="FrontPageLogo" link="/" />
-            <SearchBar style="flex" />
+            <SearchBar style="flex" type="MainPage" />
           </Box>
         </Container>
       </div>

@@ -18,7 +18,7 @@ function Results() {
   const searchTerm = decodeURIComponent(slug);
   const URIsearchTerm = encodeURI(slug);
   const [Movies, setMovies] = useState([]);
-
+  const reloadNavbar = <NavBar2 page="results"></NavBar2>;
   useEffect(() => {
     axios
       .get(
@@ -26,7 +26,7 @@ function Results() {
       )
       .then((resp) => setMovies(resp.data.results))
       .catch((resp) => console.log(resp));
-  }, [Movies.length]);
+  }, [Movies.length, URIsearchTerm]);
 
   const movie = Movies.map((item) => {
     return {
@@ -98,7 +98,15 @@ function Results() {
         }}
       >
         <Container style={{ marginTop: 20 }}>
-          <Typography variant="h2" style={{ color: "white" }}>
+          <Typography
+            variant="h2"
+            style={{
+              color: "white",
+              fontWeight: "bold",
+              textShadow: "2px 2px black",
+            }}
+            mark={true}
+          >
             Movies
           </Typography>
           <Grid

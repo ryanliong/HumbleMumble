@@ -1,10 +1,11 @@
 import React from "react";
 import { List, Menu } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import CenteredModal from "../MediaComponents/CenteredModal";
 import auth0Client from "./Auth";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import SearchBar from "../MediaComponents/SearchBar";
 
 function NavBar2(props) {
   const [currentPage, changePage] = useState(props.page);
@@ -24,11 +25,10 @@ function NavBar2(props) {
     leftPadding: 50,
   };
 
-  const options = ["Option 1", "Option 2"];
-
   const centerItem = { marginLeft: 25, marginRight: 25 };
   const rightStyle = { position: "absolute", top: 0, right: 0, height: 58 };
   const rightItem = { height: 58 };
+  const [searchBar, updateSearchBar] = useState(<SearchBar></SearchBar>);
   return (
     <nav>
       <Menu
@@ -51,27 +51,7 @@ function NavBar2(props) {
           </Link>
         </Menu.Item>
         <Menu.Item>
-          <Autocomplete
-            id="custom-input-demo"
-            options={options}
-            renderInput={(params) => (
-              <div ref={params.InputProps.ref}>
-                <input
-                  style={{
-                    width: 300,
-                    color: "black",
-                    textJustify: "auto",
-                    padding: 5,
-                  }}
-                  type="text"
-                  {...params.inputProps}
-                  placeholder="Search here!"
-                  onFocus={(e) => (e.target.placeholder = "")}
-                  onBlur={(e) => (e.target.placeholder = "Search here!")}
-                />
-              </div>
-            )}
-          />
+          <SearchBar></SearchBar>
         </Menu.Item>
       </Menu>
       <Menu
