@@ -56,22 +56,22 @@ function Results() {
             spacing={1}
           >
             <Grid item xs={6}>
-              <Link
-                to={"/Movie/" + encodeURI(movie[i].title)}
-                onClick={movieID1}
-              >
-                <SearchResultsItem attributes={movie[i]}></SearchResultsItem>
-              </Link>
+              <SearchResultsItem
+                attributes={movie[i]}
+                link={{
+                  goTo: "/Movie/" + encodeURI(movie[i].title),
+                  action: movieID1,
+                }}
+              />
             </Grid>
             <Grid item xs={6}>
-              <Link
-                to={"/Movie/" + encodeURI(movie[i + 1].title)}
-                onClick={movieID2}
-              >
-                <SearchResultsItem
-                  attributes={movie[i + 1]}
-                ></SearchResultsItem>
-              </Link>
+              <SearchResultsItem
+                attributes={movie[i + 1]}
+                link={{
+                  goTo: "/Movie/" + encodeURI(movie[i + 1].title),
+                  action: movieID2,
+                }}
+              ></SearchResultsItem>
             </Grid>
           </Grid>
         </Grid>
@@ -81,9 +81,13 @@ function Results() {
   const topItem = Movies[0];
 
   const backgroundUrl =
-    topItem != null &&
-    "http://image.tmdb.org/t/p/original" + topItem.backdrop_path;
+    topItem != null
+      ? topItem.backdrop_path != null
+        ? "http://image.tmdb.org/t/p/original" + topItem.backdrop_path
+        : "http://image.tmdb.org/t/p/original" + topItem.poster_path
+      : "https://images.pexels.com/photos/161154/stained-glass-spiral-circle-pattern-161154.jpeg";
   console.log(backgroundUrl);
+  topItem != null ? console.log(topItem) : "";
   return (
     <div>
       <NavBar2 page="results"></NavBar2>

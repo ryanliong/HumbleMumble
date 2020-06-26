@@ -6,29 +6,39 @@ import CenteredModal from "../MediaComponents/CenteredModal";
 import auth0Client from "./Auth";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchBar from "../MediaComponents/SearchBar";
-
+import { HomeOutlined } from "@ant-design/icons";
 function NavBar2(props) {
   const [currentPage, changePage] = useState(props.page);
-
+  const [listOpen, openList] = useState(false);
   const handleClick = (nextPage) => changePage(nextPage);
 
   const signOut = () => {
     auth0Client.signOut();
     props.history.replace("/");
   };
-
+  const bgColor = "#2b2d42";
   const centerStyle = {
     position: "relative",
     display: "flex",
     fontSize: 20,
     height: 58,
     leftPadding: 50,
+    backgroundColor: bgColor,
   };
 
-  const centerItem = { marginLeft: 25, marginRight: 25 };
-  const rightStyle = { position: "absolute", top: 0, right: 0, height: 58 };
+  const centerItem = {
+    marginLeft: 25,
+    marginRight: 25,
+    color: "white",
+  };
+  const rightStyle = {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    height: 58,
+    backgroundColor: bgColor,
+  };
   const rightItem = { height: 58 };
-  const [searchBar, updateSearchBar] = useState(<SearchBar></SearchBar>);
   return (
     <nav>
       <Menu
@@ -40,6 +50,7 @@ function NavBar2(props) {
           height: 58,
           width: 600,
           position: "flex",
+          backgroundColor: bgColor,
         }}
         selectable={false}
         theme="dark"
@@ -62,7 +73,9 @@ function NavBar2(props) {
         theme="dark"
       >
         <Menu.Item key="home" style={centerItem}>
-          <Link to="/">Home</Link>
+          <Link to="/">
+            <span>Home</span>
+          </Link>
         </Menu.Item>
         <Menu.Item key="account" style={centerItem}>
           <Link to="/Account">My Account</Link>

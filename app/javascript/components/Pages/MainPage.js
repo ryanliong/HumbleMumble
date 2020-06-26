@@ -22,7 +22,7 @@ function MainPage() {
         <Container maxWidth="lg">
           <Box
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.75)",
+              backgroundColor: "#ade8f4cc",
               width: "100%",
               height: 800,
               marginTop: 100,
