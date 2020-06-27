@@ -46,6 +46,7 @@ function Results() {
     if (i + 2 < movie.length) {
       const movieID1 = () => localStorage.setItem("movieID", movie[i].id);
       const movieID2 = () => localStorage.setItem("movieID", movie[i + 1].id);
+
       searchResultItem.push(
         <Grid item xs>
           <Grid
@@ -86,8 +87,10 @@ function Results() {
         ? "http://image.tmdb.org/t/p/original" + topItem.backdrop_path
         : "http://image.tmdb.org/t/p/original" + topItem.poster_path
       : "https://images.pexels.com/photos/161154/stained-glass-spiral-circle-pattern-161154.jpeg";
+
   console.log(backgroundUrl);
   topItem != null ? console.log(topItem) : "";
+
   return (
     <div>
       <NavBar2 page="results"></NavBar2>

@@ -14,8 +14,10 @@ import { Redirect, useHistory } from "react-router";
 
 function SearchResultsItem(props) {
   const [linkOut, setOut] = useState(false);
+  const movieID = () => localStorage.setItem("movieID", props.attributes.id);
   if (linkOut) {
-    console.log(props.link.goTo);
+    props.link.action();
+    movieID();
     return <Redirect to={props.link.goTo} />;
   }
 
@@ -31,7 +33,6 @@ function SearchResultsItem(props) {
           <CardActionArea
             onClick={() => {
               setOut(true);
-              props.link.action;
             }}
           >
             <CardMedia
