@@ -19,6 +19,7 @@ function Results() {
   const URIsearchTerm = encodeURI(slug);
   const [Movies, setMovies] = useState([]);
   const reloadNavbar = <NavBar2 page="results"></NavBar2>;
+
   useEffect(() => {
     axios
       .get(
