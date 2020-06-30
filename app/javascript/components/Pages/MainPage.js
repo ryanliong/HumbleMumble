@@ -14,7 +14,7 @@ function MainPage() {
           backgroundImage: `url(https://images.pexels.com/photos/109669/pexels-photo-109669.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)`,
           minHeight: "100%",
           minWidth: "100%",
-          position: "fixed",
+          position: "absolute",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
@@ -22,7 +22,7 @@ function MainPage() {
         <Container maxWidth="lg">
           <Box
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.75)",
+              backgroundColor: "#ade8f4cc",
               width: "100%",
               height: 800,
               marginTop: 100,
@@ -31,7 +31,7 @@ function MainPage() {
             }}
           >
             <Logo name="FrontPageLogo" link="/" />
-            <SearchBar style="flex" />
+            <SearchBar style="flex" type="MainPage" />
           </Box>
         </Container>
       </div>

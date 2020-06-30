@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Container, Typography } from "@material-ui/core";
 import { useParams } from "react-router";
+import IGDB from "../API/IGDB";
+import IGDBConsolidate from "../API/IGDBConsolidate";
 function Test() {
-  let { slug } = useParams();
-  const searchTerm = decodeURIComponent(slug);
-  const URIsearchTerm = encodeURI(slug);
+  const [result, changeResult] = useState(IGDBConsolidate());
 
-  const axios = require("axios");
+  useEffect(() => console.log(result), []);
 
   return (
     <div>

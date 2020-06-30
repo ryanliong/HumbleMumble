@@ -3,6 +3,8 @@ import { useState } from "react";
 import Registration from "./Registation";
 import { Button, Modal } from "antd";
 import MediaList from "./MediaList";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function CenteredModal(props) {
   const [open, setOpen] = useState(false);
@@ -17,9 +19,10 @@ function CenteredModal(props) {
 
   return (
     <div>
-      <Button type="primary" onClick={handleOpen}>
-        {props.type == "Registration" ? "Register" : "List"}
-      </Button>
+      <Link onClick={handleOpen} style={{ color: "white" }}>
+        List
+      </Link>
+
       <Modal
         title="List"
         visible={open}

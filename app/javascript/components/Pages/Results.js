@@ -18,7 +18,7 @@ function Results() {
   const searchTerm = decodeURIComponent(slug);
   const URIsearchTerm = encodeURI(slug);
   const [Movies, setMovies] = useState([]);
-
+  const reloadNavbar = <NavBar2 page="results"></NavBar2>;
   useEffect(() => {
     axios
       .get(
@@ -26,13 +26,16 @@ function Results() {
       )
       .then((resp) => setMovies(resp.data.results))
       .catch((resp) => console.log(resp));
-  }, [Movies.length]);
+  }, [Movies.length, URIsearchTerm]);
 
   const movie = Movies.map((item) => {
     return {
       title: item.title,
       overview: item.overview,
-      image_url: "http://image.tmdb.org/t/p/w300" + item.poster_path,
+      image_url:
+        item.poster_path == null
+          ? item.poster_path
+          : "http://image.tmdb.org/t/p/w300" + item.poster_path,
       id: item.id,
     };
   });
@@ -43,6 +46,7 @@ function Results() {
     if (i + 2 < movie.length) {
       const movieID1 = () => localStorage.setItem("movieID", movie[i].id);
       const movieID2 = () => localStorage.setItem("movieID", movie[i + 1].id);
+
       searchResultItem.push(
         <Grid item xs>
           <Grid
@@ -53,44 +57,76 @@ function Results() {
             spacing={1}
           >
             <Grid item xs={6}>
-              <Link
-                to={"/Movie/" + encodeURI(movie[i].title)}
-                onClick={movieID1}
-              >
-                <SearchResultsItem attributes={movie[i]}></SearchResultsItem>
-              </Link>
+              <SearchResultsItem
+                attributes={movie[i]}
+                link={{
+                  goTo: "/Movie/" + encodeURI(movie[i].title),
+                  action: movieID1,
+                }}
+              />
             </Grid>
             <Grid item xs={6}>
-              <Link
-                to={"/Movie/" + encodeURI(movie[i + 1].title)}
-                onClick={movieID2}
-              >
-                <SearchResultsItem
-                  attributes={movie[i + 1]}
-                ></SearchResultsItem>
-              </Link>
+              <SearchResultsItem
+                attributes={movie[i + 1]}
+                link={{
+                  goTo: "/Movie/" + encodeURI(movie[i + 1].title),
+                  action: movieID2,
+                }}
+              ></SearchResultsItem>
             </Grid>
           </Grid>
         </Grid>
       );
     }
   }
+  const topItem = Movies[0];
+
+  const backgroundUrl =
+    topItem != null
+      ? topItem.backdrop_path != null
+        ? "http://image.tmdb.org/t/p/original" + topItem.backdrop_path
+        : "http://image.tmdb.org/t/p/original" + topItem.poster_path
+      : "https://images.pexels.com/photos/161154/stained-glass-spiral-circle-pattern-161154.jpeg";
+
+  console.log(backgroundUrl);
+  topItem != null ? console.log(topItem) : "";
 
   return (
     <div>
       <NavBar2 page="results"></NavBar2>
-      <Container style={{ marginTop: 50 }}>
-        <Typography variant="h3">Movies</Typography>
-        <Grid
-          container
-          direction="column"
-          justify="flex-end"
-          alignItems="stretch"
-          spacing={2}
-        >
-          {searchResultItem}
-        </Grid>
-      </Container>
+      <div
+        style={{
+          backgroundImage: `url(${backgroundUrl})`,
+          minHeight: "100%",
+          minWidth: "100%",
+          position: "absolute",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <Container style={{ marginTop: 20 }}>
+          <Typography
+            variant="h2"
+            style={{
+              color: "white",
+              fontWeight: "bold",
+              textShadow: "2px 2px black",
+            }}
+            mark={true}
+          >
+            Movies
+          </Typography>
+          <Grid
+            container
+            direction="column"
+            justify="flex-end"
+            alignItems="stretch"
+            spacing={2}
+          >
+            {searchResultItem}
+          </Grid>
+        </Container>
+      </div>
     </div>
   );
 }
