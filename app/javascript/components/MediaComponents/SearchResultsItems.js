@@ -49,7 +49,9 @@ function SearchResultsItem(props) {
           </CardActionArea>
         </Grid>
         <Grid item>
-          <CardContent style={{ maxWidth: 390, paddingBottom: 0 }}>
+          <CardContent
+            style={{ maxWidth: 390, minWidth: 390, paddingBottom: 0 }}
+          >
             <CardActionArea
               onClick={() => {
                 setOut(true);
@@ -63,7 +65,12 @@ function SearchResultsItem(props) {
           </CardContent>
 
           <CardContent
-            style={{ maxWidth: 390, overflow: "auto", paddingBottom: 0 }}
+            style={{
+              maxWidth: 390,
+              minWidth: 390,
+              overflow: "auto",
+              paddingBottom: 0,
+            }}
           >
             <Paragraph
               ellipsis={{
