@@ -12,12 +12,13 @@ import NavBar2 from "../NavBar/NavBar2";
 
 function Movie() {
   let { slug } = useParams();
-  const searchTerm = decodeURIComponent(slug);
-  const URIsearchTerm = encodeURI(slug);
+  let splitVal = slug.split("+");
+  let rawSearchTerm = splitVal[0];
+  let movieID = splitVal[1];
+  const searchTerm = decodeURIComponent(rawSearchTerm);
+  const URIsearchTerm = encodeURI(rawSearchTerm);
   const [Movies, setMovies] = useState({});
   const [RT, setRT] = useState([]);
-
-  const movieID = localStorage.getItem("movieID");
 
   useEffect(() => {
     axios
@@ -34,9 +35,7 @@ function Movie() {
   }, [RT.length]);
 
   const movie = Movies;
-  console.log(Movies);
-  //Filter still provides old movies <2000 with the exact same name, reduce further for the highest popularity
-  console.log(RT);
+
   const backgroundUrl =
     movie.backdrop_path != ""
       ? "http://image.tmdb.org/t/p/original" + movie.backdrop_path

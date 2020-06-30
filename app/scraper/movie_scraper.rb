@@ -5,7 +5,10 @@ require 'json'
 require 'erb'
 
 module Movie_scraper
-	def self.scraper (searchTerm)
+	def self.scraper (slug)
+		splitVal = slug.split("+")
+		searchTerm = splitVal[0].strip
+		movieID = splitVal[1].strip
 		uriEncodedST = ERB::Util.url_encode(searchTerm)
 		searchURL = "https://www.rottentomatoes.com/search?search=#{searchTerm}"
 		unparsed_searchPage = HTTParty.get(searchURL)

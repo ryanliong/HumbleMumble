@@ -44,8 +44,8 @@ function Results() {
 
   for (let i = 0; i < movie.length; i += 2) {
     if (i + 2 < movie.length) {
-      const movieID1 = () => localStorage.setItem("movieID", movie[i].id);
-      const movieID2 = () => localStorage.setItem("movieID", movie[i + 1].id);
+      const movieID1 = movie[i].id;
+      const movieID2 = movie[i + 1].id;
 
       searchResultItem.push(
         <Grid item xs>
@@ -60,8 +60,7 @@ function Results() {
               <SearchResultsItem
                 attributes={movie[i]}
                 link={{
-                  goTo: "/Movie/" + encodeURI(movie[i].title),
-                  action: movieID1,
+                  goTo: "/Movie/" + encodeURI(movie[i].title) + "+" + movieID1,
                 }}
               />
             </Grid>
@@ -69,8 +68,8 @@ function Results() {
               <SearchResultsItem
                 attributes={movie[i + 1]}
                 link={{
-                  goTo: "/Movie/" + encodeURI(movie[i + 1].title),
-                  action: movieID2,
+                  goTo:
+                    "/Movie/" + encodeURI(movie[i + 1].title) + "+" + movieID2,
                 }}
               ></SearchResultsItem>
             </Grid>
