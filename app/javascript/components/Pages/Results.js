@@ -13,12 +13,13 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 
 function Results() {
-  //configured only for movies for now
+  //configured only for movies and TvShows for now
   let { slug } = useParams();
   const searchTerm = decodeURIComponent(slug);
   const URIsearchTerm = encodeURI(slug);
   const [Movies, setMovies] = useState([]);
-  const reloadNavbar = <NavBar2 page="results"></NavBar2>;
+  const [TvShows, setTvShows] = useState([]);
+  const reloadNavbar = <NavBar2 page="results"></NavBar2>; // Line not used, remove?
 
   useEffect(() => {
     axios
@@ -26,6 +27,13 @@ function Results() {
         `https://api.themoviedb.org/3/search/movie?api_key=f6fef0b6b13ff8c438075fdee50bb9a8&language=en-US&query=${URIsearchTerm}&page=1&include_adult=false`
       )
       .then((resp) => setMovies(resp.data.results))
+      .catch((resp) => console.log(resp));
+
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/tv?api_key=f6fef0b6b13ff8c438075fdee50bb9a8&language=en-US&page=1&query=${URIsearchTerm}&include_adult=false`
+      )
+      .then((resp) => setTvShows(resp.data.results))
       .catch((resp) => console.log(resp));
   }, [Movies.length, URIsearchTerm]);
 
@@ -41,8 +49,21 @@ function Results() {
     };
   });
 
+  const tvShows = TvShows.map((item) => {
+    return {
+      title: item.name,
+      overview: item.overview,
+      image_url:
+        item.poster_path == null
+          ? item.poster_path
+          : "http://image.tmdb.org/t/p/w300" + item.poster_path,
+      id: item.id,
+    };
+  });
+
   const searchResultItem = [];
 
+  //For Movies
   for (let i = 0; i < movie.length; i += 2) {
     if (i + 2 < movie.length) {
       const movieID1 = movie[i].id;
@@ -80,6 +101,75 @@ function Results() {
     }
   }
   const topItem = Movies[0];
+
+  //For TvShows
+  for (let i = 0; i < tvShows.length; i += 2) {
+    if (tvShows.length == 1) {
+      searchResultItem.push(
+        <Grid item xs>
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="flex-start"
+            spacing={1}
+          >
+            <Grid item xs={6}>
+              <SearchResultsItem
+                attributes={tvShows[i]}
+                link={{
+                  goTo:
+                    "/Tv-Show/" +
+                    encodeURI(tvShows[i].title) +
+                    "+" +
+                    tvShows[i].id,
+                }}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+      );
+    }
+
+    if (i + 2 < tvShows.length) {
+      const tvShowID1 = tvShows[i].id;
+      const tvShowID2 = tvShows[i + 1].id;
+
+      searchResultItem.push(
+        <Grid item xs>
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="flex-start"
+            spacing={1}
+          >
+            <Grid item xs={6}>
+              <SearchResultsItem
+                attributes={tvShows[i]}
+                link={{
+                  goTo:
+                    "/Tv-Show/" + encodeURI(tvShows[i].title) + "+" + tvShowID1,
+                }}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <SearchResultsItem
+                attributes={tvShows[i + 1]}
+                link={{
+                  goTo:
+                    "/Tv-Show/" +
+                    encodeURI(tvShows[i + 1].title) +
+                    "+" +
+                    tvShowID2,
+                }}
+              ></SearchResultsItem>
+            </Grid>
+          </Grid>
+        </Grid>
+      );
+    }
+  }
 
   const backgroundUrl =
     topItem != null

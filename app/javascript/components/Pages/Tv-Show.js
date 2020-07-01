@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import DescriptionImage from "../MediaComponents/DescriptionImage";
 import Description from "../MediaComponents/Description";
@@ -7,11 +7,50 @@ import Friends from "../MediaComponents/Friends";
 import { Container, Grid } from "@material-ui/core";
 import ContentCarousel from "../MediaComponents/ContentCarousel";
 import NavBar2 from "../NavBar/NavBar2";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function TvShow() {
+  let { slug } = useParams();
+  let splitVal = slug.split("+");
+  let rawSearchTerm = splitVal[0];
+  let tvShowID = splitVal[1];
+  const searchTerm = decodeURIComponent(rawSearchTerm);
+  const URIsearchTerm = encodeURI(rawSearchTerm);
+  const [TvShow, setTvShow] = useState({});
+  const [RT, setRT] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/tv/${tvShowID}?api_key=f6fef0b6b13ff8c438075fdee50bb9a8&language=en-US`
+      )
+      .then((resp) => setTvShow(resp.data))
+      .catch((resp) => console.log(resp));
+
+    axios
+      .get(`/tv/${URIsearchTerm}`)
+      .then((resp) => setRT(resp.data))
+      .catch((resp) => console.log(resp));
+  }, [RT.length]);
+
+  const backgroundUrl =
+    TvShow.backdrop_path != ""
+      ? "http://image.tmdb.org/t/p/original" + TvShow.backdrop_path
+      : "http://image.tmdb.org/t/p/original" + TvShow.poster_path;
+
   return (
-    <div>
-      <NavBar2 page="tv-show" />
+    <div
+      style={{
+        backgroundImage: `url(${backgroundUrl})`,
+        minHeight: "100%",
+        minWidth: "100%",
+        position: "absolute",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      <NavBar2 page="TvShow" />
       <Container maxWidth="lg" style={{ marginTop: 50 }}>
         <Grid
           container
@@ -31,9 +70,9 @@ function TvShow() {
               <Grid item xs>
                 {/* Top left image here */}
                 <DescriptionImage
-                  imgUrl="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Kingdomofthecrystalskull.jpg/220px-Kingdomofthecrystalskull.jpg"
-                  name="Indiana Jones and the Kingdom of the Crystal Skull"
-                  type="movie"
+                  imgUrl={"http://image.tmdb.org/t/p/w300" + TvShow.poster_path}
+                  name={TvShow.name}
+                  type="movie" //needs to change
                 ></DescriptionImage>
               </Grid>
               <Grid item xs={9}>
@@ -46,11 +85,15 @@ function TvShow() {
                 >
                   <Grid item xs>
                     {/* Carousel here */}
-                    <ContentCarousel />
+                    <ContentCarousel tvShowId={TvShow.id} RT={RT} />
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}
-                    <Description h={185} title="Description" />
+                    <Description
+                      h={185}
+                      title="Description"
+                      description={TvShow.overview}
+                    />
                   </Grid>
                 </Grid>
               </Grid>
