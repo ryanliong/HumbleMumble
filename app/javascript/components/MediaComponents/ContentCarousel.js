@@ -4,18 +4,18 @@ import { Carousel } from "antd";
 import axios from "axios";
 
 function ContentCarousel(props) {
-  const [Reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${props.movieId}}/reviews?api_key=f6fef0b6b13ff8c438075fdee50bb9a8&language=en-US&page=1`
-      )
-      .then((resp) => setReviews(resp.data.results))
-      .catch((resp) => console.log(resp));
-  }, [props.movieId]);
-
   //from TMDB
+  // const [Reviews, setReviews] = useState([]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://api.themoviedb.org/3/movie/${props.movieId}}/reviews?api_key=f6fef0b6b13ff8c438075fdee50bb9a8&language=en-US&page=1`
+  //     )
+  //     .then((resp) => setReviews(resp.data.results))
+  //     .catch((resp) => console.log(resp));
+  // }, [props.movieId]);
+
   // const test = Reviews.map((item) => {
   //   return { author: item.author, description: item.content };
   // });

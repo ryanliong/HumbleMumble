@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :movie, param: :slug
+  resources :tv, param: :slug
   
   match '*path', to: 'pages#index', via: :all
 end
