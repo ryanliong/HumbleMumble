@@ -11,22 +11,67 @@ import NavBar2 from "../NavBar/NavBar2";
 import SearchResultsItem from "../MediaComponents/SearchResultsItems";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import IGDB from "../API/IGDB";
 
 function Results() {
   //configured only for movies for now
   let { slug } = useParams();
   const searchTerm = decodeURIComponent(slug);
   const URIsearchTerm = encodeURI(slug);
+  //movie consts here
   const [Movies, setMovies] = useState([]);
-  const reloadNavbar = <NavBar2 page="results"></NavBar2>;
+  //game consts here
+  const [gameResult, changeGameResult] = useState("");
+  const [gameCover, changeGameCover] = useState("");
+  console.log(slug);
   useEffect(() => {
+    //Movies api grabbing here
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=f6fef0b6b13ff8c438075fdee50bb9a8&language=en-US&query=${URIsearchTerm}&page=1&include_adult=false`
       )
       .then((resp) => setMovies(resp.data.results))
       .catch((resp) => console.log(resp));
+
+    //Games api grabbing here
+    const fetchData = IGDB({ type: "games", title: slug });
+    Promise.all([fetchData]).then((values) => {
+      const searchResults = values[0];
+      changeGameResult(searchResults);
+
+      const getCover = searchResults.map((gameDetails) => {
+        return IGDB({ type: "covers", title: gameDetails.cover });
+      });
+
+      Promise.all(getCover).then((values) => {
+        const arrayOfCoverUrl = values
+          .map((flatten) => flatten[0])
+          .map((getImgID) => getImgID.image_id)
+          .map(
+            (setImageTo1080p) =>
+              "http://images.igdb.com/igdb/image/upload/t_1080p/" +
+              setImageTo1080p +
+              ".jpg"
+          );
+        changeGameCover(arrayOfCoverUrl);
+      });
+    });
   }, [Movies.length, URIsearchTerm]);
+
+  console.log(gameResult);
+  console.log(gameCover);
+
+  let gameDetails =
+    gameResult != ""
+      ? gameResult.map((item) => {
+          return {
+            title: item.name,
+            overview: item.summary,
+            image_url: null,
+            id: item.id,
+          };
+        })
+      : "";
 
   const movie = Movies.map((item) => {
     return {
@@ -41,7 +86,75 @@ function Results() {
   });
 
   const searchResultItem = [];
+  const gameSearchResult = [];
+  //Game search result item generation here
+  if (gameDetails != "") {
+    if (gameCover != "") {
+      for (let i = 0; i < gameResult.length; i += 1) {
+        gameDetails[i].image_url = gameCover[i];
+      }
+      console.log(gameDetails);
+    }
 
+    for (let i = 0; i < gameResult.length; i += 2) {
+      if (gameResult.length - 1 < 1) {
+        gameSearchResult.push(
+          <Grid item xs>
+            <Grid
+              container
+              direction="row"
+              justify="flex-start"
+              alignItems="flex-start"
+              spacing={1}
+            >
+              <Grid item xs={6}>
+                <SearchResultsItem
+                  attributes={gameDetails[i]}
+                  link={{
+                    goTo: "/Game/" + gameResult[i].slug,
+                    action: "",
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6}></Grid>
+            </Grid>
+          </Grid>
+        );
+      } else {
+        gameSearchResult.push(
+          <Grid item xs>
+            <Grid
+              container
+              direction="row"
+              justify="flex-start"
+              alignItems="flex-start"
+              spacing={1}
+            >
+              <Grid item xs={6}>
+                <SearchResultsItem
+                  attributes={gameDetails[i]}
+                  link={{
+                    goTo: "/Game/" + gameResult[i].slug,
+                    action: "",
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <SearchResultsItem
+                  attributes={gameDetails[i + 1]}
+                  link={{
+                    goTo: "/Game/" + gameResult[i + 1].slug,
+                    action: "",
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </Grid>
+        );
+      }
+    }
+  }
+  //Movie search result item generation here
   for (let i = 0; i < movie.length; i += 2) {
     if (i + 2 < movie.length) {
       const movieID1 = () => localStorage.setItem("movieID", movie[i].id);
@@ -124,6 +237,26 @@ function Results() {
             spacing={2}
           >
             {searchResultItem}
+          </Grid>
+          <Typography
+            variant="h2"
+            style={{
+              color: "white",
+              fontWeight: "bold",
+              textShadow: "2px 2px black",
+            }}
+            mark={true}
+          >
+            Games
+          </Typography>
+          <Grid
+            container
+            direction="column"
+            justify="flex-end"
+            alignItems="stretch"
+            spacing={2}
+          >
+            {gameSearchResult}
           </Grid>
         </Container>
       </div>
