@@ -15,6 +15,7 @@ import { Redirect, useHistory } from "react-router";
 function SearchResultsItem(props) {
   const [linkOut, setOut] = useState(false);
   const movieID = () => localStorage.setItem("movieID", props.attributes.id);
+  
   if (linkOut) {
     props.link.action();
     movieID();
@@ -22,7 +23,7 @@ function SearchResultsItem(props) {
   }
 
   return (
-    <Card style={{ height: 300, overflow: "auto" }}>
+    <Card style={{ height: 300, minWidth: 600, overflow: "auto" }}>
       <Grid
         container
         direction="row"
@@ -49,7 +50,9 @@ function SearchResultsItem(props) {
           </CardActionArea>
         </Grid>
         <Grid item>
-          <CardContent style={{ maxWidth: 390, paddingBottom: 0 }}>
+          <CardContent
+            style={{ maxWidth: 390, minWidth: 390, paddingBottom: 0 }}
+          >
             <CardActionArea
               onClick={() => {
                 setOut(true);
@@ -63,7 +66,12 @@ function SearchResultsItem(props) {
           </CardContent>
 
           <CardContent
-            style={{ maxWidth: 390, overflow: "auto", paddingBottom: 0 }}
+            style={{
+              maxWidth: 390,
+              minWidth: 390,
+              overflow: "auto",
+              paddingBottom: 0,
+            }}
           >
             <Paragraph
               ellipsis={{
