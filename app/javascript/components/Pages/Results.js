@@ -25,7 +25,6 @@ function Results() {
   const [gameCover, changeGameCover] = useState("");
   console.log(slug);
   const [TvShows, setTvShows] = useState([]);
-  const reloadNavbar = <NavBar2 page="results"></NavBar2>; // Line not used, remove?
 
   useEffect(() => {
     //Movies api grabbing here
