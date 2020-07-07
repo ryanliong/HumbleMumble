@@ -6,7 +6,7 @@ function IGDB(props) {
   const axios = require("axios");
   const fields =
     props.type == "games"
-      ? "fields artworks, cover, category, first_release_date, genres, popularity, rating, slug, summary, total_rating, videos, websites, screenshots; "
+      ? "fields artworks, cover, name, category, first_release_date, genres, popularity, rating, slug, summary, total_rating, videos, websites, screenshots; "
       : "fields *;";
 
   const search =
