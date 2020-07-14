@@ -19,7 +19,7 @@ function SearchResultsItem(props) {
   }
 
   return (
-    <Card style={{ height: 300, overflow: "auto" }}>
+    <Card style={{ height: 300, minWidth: 600, overflow: "auto" }}>
       <Grid
         container
         direction="row"
