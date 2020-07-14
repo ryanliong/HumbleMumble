@@ -18,6 +18,8 @@ function SearchResultsItem(props) {
 
   if (linkOut) {
     movieID();
+  }
+  if (linkOut) {
     return <Redirect to={props.link.goTo} />;
   }
 
@@ -55,7 +57,7 @@ function SearchResultsItem(props) {
             <CardActionArea
               onClick={() => {
                 setOut(true);
-                props.link.action;
+                props.link.goTo;
               }}
             >
               <Typography.Title style={{ fontSize: "1.5em", marginBottom: 0 }}>

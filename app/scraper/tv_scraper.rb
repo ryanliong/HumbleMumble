@@ -4,7 +4,7 @@ require 'byebug'
 require 'json'
 require 'erb'
 
-module Movie_scraper
+module Tv_scraper
 	def self.scraper (slug)
 		splitVal = slug.split("+")
 		searchTerm = splitVal[0].strip
@@ -14,11 +14,9 @@ module Movie_scraper
 		parsed_searchPage = Nokogiri::HTML(unparsed_searchPage)
 		searchResults = Array.new
 		
-		searchData = JSON.parse(parsed_searchPage.css("script#movies-json").text)
-
+		searchData = JSON.parse(parsed_searchPage.css("script#tvs-json").text)
 		firstUrl = searchData['items'][0]['url']
-
-		reviewPage = firstUrl + '/reviews'
+		reviewPage = firstUrl + '/s01/reviews'
 		
 		unparsed_page = HTTParty.get(reviewPage)
 		parsed_page = Nokogiri::HTML(unparsed_page)
@@ -27,11 +25,11 @@ module Movie_scraper
 		review_listings.each do |review_listing|
 			review = {
 				name: review_listing.css('a.articleLink').text.strip,
-				publication: review_listing.css('em.critic-publication').text.strip,
-				date: review_listing.css('div.review-date').text.strip,
-				description: review_listing.css('div.the_review').text.strip,
-				score: review_listing.css('div.review-link').text.gsub(/\s+/, "").partition('|').last,
-				link: review_listing.css('div.review-link').css('a')[0].attributes['href'].value
+				publication: review_listing.css('a.critic__publication').text.strip,
+				date: review_listing.css('div.critic__review-date').text.strip,
+				description: review_listing.css('div.critic__review-quote').text.strip,
+				score: review_listing.css('div.subtle').text.gsub(/\s+/, "").partition('|').last,
+				link: review_listing.css('div.subtle').css('a')[0].attributes['href'].value
 			}
 			reviews << review
 		end
