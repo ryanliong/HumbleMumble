@@ -40,7 +40,7 @@ function Movie() {
     movie.backdrop_path != ""
       ? "http://image.tmdb.org/t/p/original" + movie.backdrop_path
       : "http://image.tmdb.org/t/p/original" + movie.poster_path;
-
+  //create generic object here that is same across all categories for easy processing of information
   return (
     <div
       style={{
@@ -53,6 +53,7 @@ function Movie() {
       }}
     >
       <NavBar2 page="movie" />
+      {/* information starting from here will be abstracted away, please include all needed information in an object */}
       <Container maxWidth="lg" style={{ marginTop: 50 }}>
         <Grid
           container

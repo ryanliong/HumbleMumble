@@ -19,7 +19,7 @@ function CenteredModal(props) {
 
   return (
     <div>
-      <Link onClick={handleOpen} style={{ color: "white" }}>
+      <Link onClick={handleOpen} style={{ color: "white" }} to="">
         List
       </Link>
 

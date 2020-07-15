@@ -14,6 +14,11 @@ import { Redirect, useHistory } from "react-router";
 
 function SearchResultsItem(props) {
   const [linkOut, setOut] = useState(false);
+  const movieID = () => localStorage.setItem("movieID", props.attributes.id);
+
+  if (linkOut) {
+    movieID();
+  }
   if (linkOut) {
     return <Redirect to={props.link.goTo} />;
   }
@@ -47,7 +52,7 @@ function SearchResultsItem(props) {
         </Grid>
         <Grid item>
           <CardContent
-            style={{ maxWidth: 390, minWidth: 390, paddingBottom: 0 }}
+            style={{ maxWidth: 370, minWidth: 370, paddingBottom: 0 }}
           >
             <CardActionArea
               onClick={() => {
@@ -63,8 +68,8 @@ function SearchResultsItem(props) {
 
           <CardContent
             style={{
-              maxWidth: 390,
-              minWidth: 390,
+              maxWidth: 370,
+              minWidth: 370,
               overflow: "auto",
               paddingBottom: 0,
             }}

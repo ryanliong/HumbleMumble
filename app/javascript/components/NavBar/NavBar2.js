@@ -55,18 +55,18 @@ function NavBar2(props) {
         selectable={false}
         theme="dark"
       >
-        <Menu.Item>
+        <Menu.Item key="humbleMumble">
           <Link className="navbar-brand" to="/">
             <img src="/MH.png" alt="HumbleMumble" id="SmallLogo" />
             HumbleMumble
           </Link>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="searchBar">
           <SearchBar></SearchBar>
         </Menu.Item>
       </Menu>
       <Menu
-        onclick={handleClick}
+        onClick={handleClick}
         selectedKeys={[currentPage]}
         mode="horizontal"
         style={centerStyle}
@@ -100,7 +100,7 @@ function NavBar2(props) {
         </Menu.Item>
       </Menu>
       <Menu mode="horizontal" style={rightStyle} selectedKeys={[]} theme="dark">
-        <Menu.Item style={rightItem}>
+        <Menu.Item key="login" style={rightItem}>
           {!auth0Client.isAuthenticated() && (
             <button className="btn btn-dark" onClick={auth0Client.signIn}>
               Sign In

@@ -10,19 +10,31 @@ import NavBar2 from "../NavBar/NavBar2";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { resolveOnChange } from "antd/lib/input/Input";
+import IGDB from "../API/IGDB";
 
 function Game() {
   let { game } = useParams();
-  const searchTerm = decodeURIComponent(game);
-  const URIsearchTerm = encodeURI(game);
+  const makeTitle = (slug) => {
+    var words = slug.split("-");
+
+    for (var i = 0; i < words.length; i++) {
+      var word = words[i];
+      words[i] = word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    return words.join(" ");
+  };
 
   const [responseData, setResponseData] = useState("");
+  const [cover, setCover] = useState("");
+  const [igdbData, setIgdbData] = useState("");
 
   const fetchData = useCallback(() => {
+    //metacritic information
     axios({
       method: "GET",
       // replace space with hyphen for url
-      url: "https://chicken-coop.p.rapidapi.com/games/grand-theft-auto-v",
+      url: "https://chicken-coop.p.rapidapi.com/games/" + game,
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host": "chicken-coop.p.rapidapi.com",
@@ -40,25 +52,29 @@ function Game() {
       .catch((error) => {
         console.log(error);
       });
-    axios({
-      url: "https://api-v3.igdb.com/games",
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "user-key": "8d01f4755f814c8ff01d6913ac465d4e",
-      },
-      data:
-        "fields age_ratings,aggregated_rating,aggregated_rating_count,alternative_names,artworks,bundles,category,checksum,collection,cover,created_at,dlcs,expansions,external_games,first_release_date,follows,franchise,franchises,game_engines,game_modes,genres,hypes,involved_companies,keywords,multiplayer_modes,name,parent_game,platforms,player_perspectives,popularity,pulse_count,rating,rating_count,release_dates,screenshots,similar_games,slug,standalone_expansions,status,storyline,summary,tags,themes,time_to_beat,total_rating,total_rating_count,updated_at,url,version_parent,version_title,videos,websites;",
-      body: {
-        search: "Halo",
-      },
-    })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.error(err);
+
+    //igdb information
+
+    const igdbFetch = IGDB({ type: "games", title: makeTitle(game) });
+    Promise.all([igdbFetch]).then((values) => {
+      const searchResults = values[0];
+      setIgdbData(searchResults);
+
+      const getCover =
+        searchResults[0].cover === undefined
+          ? [{ image_id: null }]
+          : IGDB({ type: "covers", title: searchResults[0].cover });
+
+      Promise.resolve(getCover).then((values) => {
+        setCover(
+          values[0].image_id === null
+            ? null
+            : "http://images.igdb.com/igdb/image/upload/t_1080p/" +
+                values[0].image_id +
+                ".jpg"
+        );
       });
+    });
   }, []);
 
   const extractedData = {
@@ -72,13 +88,13 @@ function Game() {
     score: responseData.score,
   };
 
-  useEffect(() => fetchData(), [fetchData]);
+  useEffect(() => fetchData(), []);
 
-  console.log(extractedData);
-
+  //create generic object here that is same across all categories for easy processing of information
   return (
     <div>
       <NavBar2 page="game" />
+      {/* information starting from here will be abstracted away, please include all needed information in an object */}
       <Container maxWidth="lg" style={{ marginTop: 50 }}>
         <Grid
           container
@@ -98,7 +114,7 @@ function Game() {
               <Grid item xs>
                 {/* Top left image here */}
                 <DescriptionImage
-                  imgUrl={extractedData.imageUrl}
+                  imgUrl={cover}
                   name={extractedData.title}
                   type="movie"
                 ></DescriptionImage>
@@ -113,7 +129,6 @@ function Game() {
                 >
                   <Grid item xs>
                     {/* Carousel here */}
-                    <ContentCarousel />
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}
