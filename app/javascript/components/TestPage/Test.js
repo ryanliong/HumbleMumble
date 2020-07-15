@@ -1,50 +1,19 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { Container, Typography } from "@material-ui/core";
-import { useParams } from "react-router";
+import React, { useState, useEffect } from "react";
+import { Container, Typography, Grid } from "@material-ui/core";
+import NavBar2 from "../NavBar/NavBar2";
+import SearchResultsItem from "../MediaComponents/SearchResultsItems";
+import axios from "axios";
+import { useParams, Link } from "react-router-dom";
 import IGDB from "../API/IGDB";
-import IGDBConsolidate from "../API/IGDBConsolidate";
+import DisplayResults from "../MediaComponents/DisplayResults";
+import { Spin, Alert } from "antd";
+import LoadingBar from "../MediaComponents/LoadingBar";
 function Test() {
-  const [result, changeResult] = useState("");
-  const [cover, changeCover] = useState("");
-
+  const [loading, setLoadStatus] = useState(true);
   useEffect(() => {
-    const fetchData = IGDB({ type: "games", title: "Halo" });
-    Promise.all([fetchData]).then((values) => {
-      const searchResults = values[0];
-      changeResult(searchResults);
-
-      const getCover = searchResults.map((gameDetails) => {
-        return IGDB({ type: "covers", title: gameDetails.cover });
-      });
-
-      Promise.all(getCover).then((values) => {
-        const arrayOfCoverUrl = values
-          .map((flatten) => flatten[0])
-          .map((getImgID) => getImgID.image_id)
-          .map(
-            (setImageTo1080p) =>
-              "images.igdb.com/igdb/image/upload/t_1080p/" +
-              setImageTo1080p +
-              ".jpg"
-          );
-        changeCover(arrayOfCoverUrl);
-      });
-    });
+    setTimeout(() => setLoadStatus(false), 2000);
   }, []);
-
-  console.log(result);
-  console.log(cover);
-
-  return (
-    <div>
-      <Container>
-        <Typography variant="h1">Error 404 page not found!</Typography>
-        <a href="/">
-          <img src="/MH.png" alt="HumbleMumble" style={{ marginLeft: 70 }} />
-        </a>
-      </Container>
-    </div>
-  );
+  return <LoadingBar></LoadingBar>;
 }
 
 export default Test;

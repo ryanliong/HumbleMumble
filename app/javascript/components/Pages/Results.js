@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from "react";
 import {
   Container,
-  CardMedia,
-  Card,
-  CardContent,
   Typography,
   Grid,
+  Card,
+  CardContent,
 } from "@material-ui/core";
 import NavBar2 from "../NavBar/NavBar2";
-import SearchResultsItem from "../MediaComponents/SearchResultsItems";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import IGDB from "../API/IGDB";
+import DisplayResults from "../MediaComponents/DisplayResults";
+import LoadingBar from "../MediaComponents/LoadingBar";
 
 function Results() {
-  //configured only for movies and TvShows for now
   let { slug } = useParams();
   const searchTerm = decodeURIComponent(slug);
   const URIsearchTerm = encodeURI(slug);
-  //movie consts here
+  // loading consts here
+  const [loading, setLoadStatus] = useState(true);
+  //Movie consts here
   const [Movies, setMovies] = useState([]);
-  //game consts here
+  const [showMovie, setDisplayMovie] = useState(true);
+  //Game consts here
   const [gameResult, changeGameResult] = useState("");
   const [gameCover, changeGameCover] = useState("");
-  console.log(slug);
+  const [showGame, setDisplayGame] = useState(true);
+  //Tv consts here
   const [TvShows, setTvShows] = useState([]);
-  const reloadNavbar = <NavBar2 page="results"></NavBar2>; // Line not used, remove?
-
+  const [showTvShow, setDisplayTvShow] = useState(true);
   useEffect(() => {
     //Movies api grabbing here
     axios
@@ -42,23 +44,30 @@ function Results() {
       const searchResults = values[0];
       changeGameResult(searchResults);
 
-      const getCover = searchResults.map((gameDetails) => {
-        return IGDB({ type: "covers", title: gameDetails.cover });
+      const getCover = searchResults.map(async (gameDetails) => {
+        // handle when there is no cover id followed up in line 57
+        return gameDetails.cover === undefined
+          ? [{ image_id: null }]
+          : IGDB({ type: "covers", title: gameDetails.cover });
       });
 
       Promise.all(getCover).then((values) => {
         const arrayOfCoverUrl = values
           .map((flatten) => flatten[0])
           .map((getImgID) => getImgID.image_id)
-          .map(
-            (setImageTo1080p) =>
-              "http://images.igdb.com/igdb/image/upload/t_1080p/" +
-              setImageTo1080p +
-              ".jpg"
+          .map((setImageTo1080p) =>
+            // continuation of handling when there is no cover id
+            setImageTo1080p === null
+              ? null
+              : "http://images.igdb.com/igdb/image/upload/t_1080p/" +
+                setImageTo1080p +
+                ".jpg"
           );
         changeGameCover(arrayOfCoverUrl);
       });
     });
+
+    //Tv api grabbing here
     axios
       .get(
         `https://api.themoviedb.org/3/search/tv?api_key=f6fef0b6b13ff8c438075fdee50bb9a8&language=en-US&page=1&query=${URIsearchTerm}&include_adult=false`
@@ -67,9 +76,12 @@ function Results() {
       .catch((resp) => console.log(resp));
   }, [Movies.length, URIsearchTerm]);
 
-  console.log(gameResult);
-  console.log(gameCover);
+  //set loading for 2 secs
+  useEffect(() => {
+    setTimeout(() => setLoadStatus(false), 2000);
+  }, []);
 
+  //Mapped elements start from here, mapping for display
   let gameDetails =
     gameResult != ""
       ? gameResult.map((item) => {
@@ -78,10 +90,10 @@ function Results() {
             overview: item.summary,
             image_url: null,
             id: item.id,
+            slug: item.slug,
           };
         })
       : "";
-
   const movie = Movies.map((item) => {
     return {
       title: item.title,
@@ -91,6 +103,7 @@ function Results() {
           ? item.poster_path
           : "http://image.tmdb.org/t/p/w300" + item.poster_path,
       id: item.id,
+      slug: encodeURI(item.title) + "+" + item.id,
     };
   });
 
@@ -103,186 +116,11 @@ function Results() {
           ? item.poster_path
           : "http://image.tmdb.org/t/p/w300" + item.poster_path,
       id: item.id,
+      slug: encodeURI(item.title) + "+" + item.id,
     };
   });
 
-  const searchResultItem = [];
-  const gameSearchResult = [];
-  //Game search result item generation here
-  if (gameDetails != "") {
-    if (gameCover != "") {
-      for (let i = 0; i < gameResult.length; i += 1) {
-        gameDetails[i].image_url = gameCover[i];
-      }
-      console.log(gameDetails);
-    }
-
-    for (let i = 0; i < gameResult.length; i += 2) {
-      if (gameResult.length - 1 < 1) {
-        gameSearchResult.push(
-          <Grid item xs>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="flex-start"
-              spacing={1}
-            >
-              <Grid item xs={6}>
-                <SearchResultsItem
-                  attributes={gameDetails[i]}
-                  link={{
-                    goTo: "/Game/" + gameResult[i].slug,
-                    action: "",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={6}></Grid>
-            </Grid>
-          </Grid>
-        );
-      } else {
-        gameSearchResult.push(
-          <Grid item xs>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="flex-start"
-              spacing={1}
-            >
-              <Grid item xs={6}>
-                <SearchResultsItem
-                  attributes={gameDetails[i]}
-                  link={{
-                    goTo: "/Game/" + gameResult[i].slug,
-                    action: "",
-                  }}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <SearchResultsItem
-                  attributes={gameDetails[i + 1]}
-                  link={{
-                    goTo: "/Game/" + gameResult[i + 1].slug,
-                    action: "",
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-        );
-      }
-    }
-  }
-  //Movie search result item generation here
-  //For Movies
-  for (let i = 0; i < movie.length; i += 2) {
-    if (i + 2 < movie.length) {
-      const movieID1 = movie[i].id;
-      const movieID2 = movie[i + 1].id;
-
-      searchResultItem.push(
-        <Grid item xs>
-          <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="flex-start"
-            spacing={1}
-          >
-            <Grid item xs={6}>
-              <SearchResultsItem
-                attributes={movie[i]}
-                link={{
-                  goTo: "/Movie/" + encodeURI(movie[i].title) + "+" + movieID1,
-                }}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <SearchResultsItem
-                attributes={movie[i + 1]}
-                link={{
-                  goTo:
-                    "/Movie/" + encodeURI(movie[i + 1].title) + "+" + movieID2,
-                }}
-              ></SearchResultsItem>
-            </Grid>
-          </Grid>
-        </Grid>
-      );
-    }
-  }
   const topItem = Movies[0];
-
-  //For TvShows
-  for (let i = 0; i < tvShows.length; i += 2) {
-    if (tvShows.length == 1) {
-      searchResultItem.push(
-        <Grid item xs>
-          <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="flex-start"
-            spacing={1}
-          >
-            <Grid item xs={6}>
-              <SearchResultsItem
-                attributes={tvShows[i]}
-                link={{
-                  goTo:
-                    "/Tv-Show/" +
-                    encodeURI(tvShows[i].title) +
-                    "+" +
-                    tvShows[i].id,
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-      );
-    }
-
-    if (i + 2 < tvShows.length) {
-      const tvShowID1 = tvShows[i].id;
-      const tvShowID2 = tvShows[i + 1].id;
-
-      searchResultItem.push(
-        <Grid item xs>
-          <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="flex-start"
-            spacing={1}
-          >
-            <Grid item xs={6}>
-              <SearchResultsItem
-                attributes={tvShows[i]}
-                link={{
-                  goTo:
-                    "/Tv-Show/" + encodeURI(tvShows[i].title) + "+" + tvShowID1,
-                }}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <SearchResultsItem
-                attributes={tvShows[i + 1]}
-                link={{
-                  goTo:
-                    "/Tv-Show/" +
-                    encodeURI(tvShows[i + 1].title) +
-                    "+" +
-                    tvShowID2,
-                }}
-              ></SearchResultsItem>
-            </Grid>
-          </Grid>
-        </Grid>
-      );
-    }
-  }
 
   const backgroundUrl =
     topItem != null
@@ -291,8 +129,80 @@ function Results() {
         : "http://image.tmdb.org/t/p/original" + topItem.poster_path
       : "https://images.pexels.com/photos/161154/stained-glass-spiral-circle-pattern-161154.jpeg";
 
-  console.log(backgroundUrl);
-  topItem != null ? console.log(topItem) : "";
+  //code to generate a block of list is here
+  const generateBlock = (text, details) => (
+    <Card style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}>
+      <CardContent>
+        {" "}
+        <Typography
+          variant="h2"
+          style={{
+            color: "white",
+            fontWeight: "bold",
+            textShadow: "2px 2px black",
+          }}
+        >
+          {text}
+        </Typography>
+        <Grid
+          container
+          direction="column"
+          justify="flex-end"
+          alignItems="stretch"
+          spacing={2}
+        >
+          <DisplayResults details={details}></DisplayResults>
+        </Grid>
+      </CardContent>
+    </Card>
+  );
+
+  //code to switch between categories here
+  const categoryStyle = {
+    color: "white",
+    fontWeight: "bold",
+    textShadow: "2px 2px black",
+  };
+  //sets what shows when things are clicked
+  const filterSelector = (text) => {
+    if (text === "Game") {
+      setDisplayGame(true);
+      setDisplayTvShow(false);
+      setDisplayMovie(false);
+    } else if (text === "Movie") {
+      setDisplayMovie(true);
+      setDisplayTvShow(false);
+      setDisplayGame(false);
+    } else if (text === "TvShow") {
+      setDisplayTvShow(true);
+      setDisplayGame(false);
+      setDisplayMovie(false);
+    } else if (text === "All") {
+      setDisplayTvShow(true);
+      setDisplayGame(true);
+      setDisplayMovie(true);
+    }
+  };
+  //maps the text to blocks to show
+  const categorySelector = [
+    "All",
+    "/ ",
+    "Movie",
+    " /",
+    "TvShow",
+    " / ",
+    "Game",
+  ].map((category) => (
+    <Grid item key={category}>
+      <Typography
+        variant="h2"
+        style={categoryStyle}
+        onClick={() => filterSelector(category)}
+      >
+        {category}
+      </Typography>{" "}
+    </Grid>
+  ));
 
   return (
     <div>
@@ -307,48 +217,61 @@ function Results() {
           backgroundSize: "cover",
         }}
       >
-        <Container style={{ marginTop: 20 }}>
-          <Typography
-            variant="h2"
-            style={{
-              color: "white",
-              fontWeight: "bold",
-              textShadow: "2px 2px black",
-            }}
-            mark={true}
-          >
-            Movies
-          </Typography>
-          <Grid
-            container
-            direction="column"
-            justify="flex-end"
-            alignItems="stretch"
-            spacing={2}
-          >
-            {searchResultItem}
-          </Grid>
-          <Typography
-            variant="h2"
-            style={{
-              color: "white",
-              fontWeight: "bold",
-              textShadow: "2px 2px black",
-            }}
-            mark={true}
-          >
-            Games
-          </Typography>
-          <Grid
-            container
-            direction="column"
-            justify="flex-end"
-            alignItems="stretch"
-            spacing={2}
-          >
-            {gameSearchResult}
-          </Grid>
-        </Container>
+        {/* loading bar here */}
+        {loading ? (
+          <LoadingBar
+            message="Please wait..."
+            description="Fetching your results..."
+          ></LoadingBar>
+        ) : (
+          <Container style={{ marginTop: 20, maxWidth: 1400 }}>
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+              spacing={3}
+            >
+              {/* category selector block */}
+              {categorySelector}
+            </Grid>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              spacing={2}
+            >
+              <Grid item key="movieBlock">
+                {/* movie block */}
+                {showMovie &&
+                  generateBlock("Movie", {
+                    result: movie,
+                    cover: "Movie",
+                    type: "Movie",
+                  })}
+              </Grid>
+              <Grid item key="tvShowBlock">
+                {/* tv show block */}
+                {showTvShow &&
+                  generateBlock("Tv-Show", {
+                    result: tvShows,
+                    cover: "Tv-show",
+                    type: "Tv-Show",
+                  })}
+              </Grid>
+              <Grid item key="gameBlock">
+                {/* game block */}
+                {showGame &&
+                  generateBlock("            Games", {
+                    result: gameDetails,
+                    cover: gameCover,
+                    type: "Game",
+                  })}
+              </Grid>
+            </Grid>
+          </Container>
+        )}
       </div>
     </div>
   );

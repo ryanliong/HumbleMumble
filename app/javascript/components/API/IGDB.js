@@ -15,15 +15,14 @@ function IGDB(props) {
       : "where id = " + props.title + ";";
 
   const limit = "limit 10;";
-  // console.log(fields + search + limit);
 
+  //currently need corsanywhere to be run without header and locally to be able to fetch data properly
   return axios({
-    url:
-      "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/" +
-      props.type,
+    url: "http://localhost:5000/https://api-v3.igdb.com/" + props.type,
 
     method: "POST",
     headers: {
+      "X-Requested-With": "XMLHttpRequest",
       Accept: "application/json",
       "user-key": "6566022df8cf4bef79b3c0bf261ed902",
     },

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../NavBar/NavBar";
 import DescriptionImage from "../MediaComponents/DescriptionImage";
 import Description from "../MediaComponents/Description";
 import Statistics from "../MediaComponents/Statistics";
@@ -38,7 +37,7 @@ function TvShow() {
     TvShow.backdrop_path != ""
       ? "http://image.tmdb.org/t/p/original" + TvShow.backdrop_path
       : "http://image.tmdb.org/t/p/original" + TvShow.poster_path;
-
+  //create generic object here that is same across all categories for easy processing of information
   return (
     <div
       style={{
@@ -51,6 +50,7 @@ function TvShow() {
       }}
     >
       <NavBar2 page="TvShow" />
+      {/* information starting from here will be abstracted away, please include all needed information in an object */}
       <Container maxWidth="lg" style={{ marginTop: 50 }}>
         <Grid
           container
