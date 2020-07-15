@@ -18,7 +18,9 @@ function IGDB(props) {
 
   //currently need corsanywhere to be run without header and locally to be able to fetch data properly
   return axios({
-    url: "http://localhost:5000/https://api-v3.igdb.com/" + props.type,
+    url:
+      "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/" +
+      props.type,
 
     method: "POST",
     headers: {
