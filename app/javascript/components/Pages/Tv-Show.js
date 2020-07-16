@@ -38,6 +38,26 @@ function TvShow() {
       ? "http://image.tmdb.org/t/p/original" + TvShow.backdrop_path
       : "http://image.tmdb.org/t/p/original" + TvShow.poster_path;
   //create generic object here that is same across all categories for easy processing of information
+
+  const tvShowData = {
+    title: TvShow.name, //DescriptionImage name
+    type: "tvShow", //DescriptionImage type
+    description: TvShow.overview, //Description description
+    imageUrl: "http://image.tmdb.org/t/p/w300" + TvShow.poster_path, // DescriptionImage imgURL
+    Id: TvShow.id, //ContentCarousel movieId
+  };
+
+  const rottenTomData = RT.map((item) => {
+    return {
+      name: item.name,
+      publication: item.publication,
+      date: item.date,
+      description: item.description,
+      score: item.score,
+      link: item.link,
+    };
+  }); //To be passed to ContentCarousel to forLoop through
+
   return (
     <div
       style={{
