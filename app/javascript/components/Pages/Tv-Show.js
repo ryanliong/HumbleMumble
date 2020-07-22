@@ -58,6 +58,7 @@ function TvShow() {
     imageUrl: "http://image.tmdb.org/t/p/w300" + TvShow.poster_path, // DescriptionImage imgURL
     Id: TvShow.id, //ContentCarousel movieId
     ReviewData: rottenTomData,
+    slug: `/tv/${TvShow.title}`,
   };
 
   return (

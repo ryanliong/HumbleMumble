@@ -20,8 +20,6 @@ function Registration(props) {
     }).catch((resp) => console.log(resp));
 
     console.log("Success:", values);
-    console.log("Success:", values.username);
-    console.log("Success:", values.password);
   };
 
   const onFinishFailed = (errorInfo) => {

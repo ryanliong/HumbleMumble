@@ -54,7 +54,8 @@ function Movie() {
     imageUrl: "http://image.tmdb.org/t/p/w300" + movie.poster_path, // DescriptionImage imgURL
     Id: movie.id, //ContentCarousel movieId
     ReviewData: rottenTomData, //To be passed to ContentCarousel to forLoop through
-  }; //add slug value here for movie and tv_show
+    slug: `/m/${movie.title}`,
+  };
 
   return (
     <div
