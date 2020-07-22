@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :api do
-    namespace :m do 
-      resources :movies, param: :slug
-      resources :movie_reviews
+    namespace :a do 
+      resources :accounts, param: :slug
+      resources :movies
+      resources :games
+      resources :tv_shows
     end
   end
 

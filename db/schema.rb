@@ -10,19 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_082228) do
+ActiveRecord::Schema.define(version: 2020_07_22_052900) do
 
-  create_table "movie_reviews", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
     t.string "name"
-    t.string "publication"
-    t.string "date"
-    t.string "description"
-    t.string "score"
-    t.string "link"
-    t.integer "movie_id", null: false
+    t.string "password"
+    t.string "bio"
+    t.string "image_url"
+    t.string "slug"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["movie_id"], name: "index_movie_reviews_on_movie_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "title"
+    t.string "image_url"
+    t.string "description"
+    t.string "score"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "link"
+    t.index ["account_id"], name: "index_games_on_account_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -30,10 +42,26 @@ ActiveRecord::Schema.define(version: 2020_06_19_082228) do
     t.string "image_url"
     t.string "description"
     t.string "score"
-    t.string "slug"
+    t.bigint "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "link"
+    t.index ["account_id"], name: "index_movies_on_account_id"
   end
 
-  add_foreign_key "movie_reviews", "movies"
+  create_table "tv_shows", force: :cascade do |t|
+    t.string "title"
+    t.string "image_url"
+    t.string "description"
+    t.string "score"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "link"
+    t.index ["account_id"], name: "index_tv_shows_on_account_id"
+  end
+
+  add_foreign_key "games", "accounts"
+  add_foreign_key "movies", "accounts"
+  add_foreign_key "tv_shows", "accounts"
 end

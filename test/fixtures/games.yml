@@ -1,19 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  publication: MyString
-  date: MyString
+  title: MyString
+  image_url: MyString
   description: MyString
   score: MyString
-  link: MyString
-  movie: one
+  account: one
 
 two:
-  name: MyString
-  publication: MyString
-  date: MyString
+  title: MyString
+  image_url: MyString
   description: MyString
   score: MyString
-  link: MyString
-  movie: two
+  account: two
