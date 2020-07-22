@@ -31,19 +31,27 @@ function DescriptionImage(props) {
     </CardActionArea>
   );
 
-  const moviePreset = [
-    actions("Rotten Tomatoes", () =>
-      window.open("https://www.rottentomatoes.com")
-    ),
-    actions("Imdb", () => window.open("https://www.imdb.com/")),
-    actions("OtherReviewSite", () => window.open(" https://www.luminus.com/")),
-  ];
+  const mediaPreset =
+    props.type === "game"
+      ? [
+          actions("IGDB", () =>
+            window.open("https://www.igdb.com/games/" + props.slug)
+          ),
+        ]
+      : [
+          actions("Rotten Tomatoes", () =>
+            window.open("https://www.rottentomatoes.com")
+          ),
+          actions("Imdb", () => window.open("https://www.imdb.com/")),
+        ];
 
   const personPreset = [
     actions("Add Movie", () => console.log("Add movie button working")),
     actions("Add Game", () => console.log("Add game button working")),
     actions("Add Tv-Show", () => console.log("Add tv-show button working")),
   ];
+
+  const mediaCategories = ["game", "movie", "tvShow"];
 
   return (
     <Box>
@@ -60,9 +68,9 @@ function DescriptionImage(props) {
         </CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h3">
-            {props.type === "movie" ? props.name : "Persons name"}
+            {mediaCategories.includes(props.type) ? props.name : "Persons name"}
           </Typography>
-          {props.type === "movie" ? moviePreset : personPreset}
+          {mediaCategories.includes(props.type) ? mediaPreset : personPreset}
         </CardContent>
       </Card>
     </Box>

@@ -21,9 +21,23 @@ function ContentCarousel(props) {
   // });
 
   //from RT
-  const test = props.RT.map((item) => {
-    return { author: item.name, description: item.description };
-  });
+  const test =
+    props.type === "game"
+      ? [
+          { author: "WIP", description: "Under Contruction" },
+          { author: "WIP", description: "Under Contruction" },
+          { author: "WIP", description: "Under Contruction" },
+          { author: "WIP", description: "Under Contruction" },
+          { author: "WIP", description: "Under Contruction" },
+          { author: "WIP", description: "Under Contruction" },
+          { author: "WIP", description: "Under Contruction" },
+          { author: "WIP", description: "Under Contruction" },
+          { author: "WIP", description: "Under Contruction" },
+          { author: "WIP", description: "Under Contruction" },
+        ]
+      : props.RT.map((item) => {
+          return { author: item.name, description: item.description };
+        });
 
   const test2 = [];
 

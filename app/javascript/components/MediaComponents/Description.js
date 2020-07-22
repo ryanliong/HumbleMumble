@@ -5,18 +5,23 @@ import {
   CardMedia,
   CardActionArea,
   CardContent,
-  Typography,
   Box,
+  Typography,
 } from "@material-ui/core";
 
 function Description(props) {
   return (
-    <Card style={{ width: 1000, height: props.h }}>
-      <CardContent>
-        <Typography gutterBottom variant="h5">
+    <Card style={{ width: 1000, height: props.h, overflow: "auto" }}>
+      <CardContent
+        style={{
+          overflow: "auto",
+          paddingBottom: 0,
+        }}
+      >
+        <Typography gutterbottom variant="h5">
           {props.title}
         </Typography>
-        <Typography gutterBottom variant="p">
+        <Typography gutterbottom variant="p">
           {props.description}
         </Typography>
       </CardContent>

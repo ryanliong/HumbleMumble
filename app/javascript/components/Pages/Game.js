@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { resolveOnChange } from "antd/lib/input/Input";
 import IGDB from "../API/IGDB";
+import PageContent from "../MediaComponents/PageContent";
 
 function Game() {
   let { game } = useParams();
@@ -58,8 +59,8 @@ function Game() {
     const igdbFetch = IGDB({ type: "games", title: makeTitle(game) });
     Promise.all([igdbFetch]).then((values) => {
       const searchResults = values[0];
-      setIgdbData(searchResults);
-
+      setIgdbData(searchResults[0]);
+      console.log(igdbData);
       const getCover =
         searchResults[0].cover === undefined
           ? [{ image_id: null }]
@@ -90,67 +91,35 @@ function Game() {
 
   useEffect(() => fetchData(), []);
 
+  useEffect(() => {
+    GameData.title = igdbData.name;
+    GameData.description = igdbData.summary;
+    console.log(GameData);
+  }, [cover]);
+
+  let GameData = {
+    title: igdbData.name, //DescriptionImage name
+    type: "game", //DescriptionImage type
+    description: igdbData.summary, //Description description
+    imageUrl: cover, // DescriptionImage imgURL
+    ReviewData: null,
+    slug: igdbData.slug,
+  };
+
   //create generic object here that is same across all categories for easy processing of information
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url(${cover})`,
+        minHeight: "100%",
+        minWidth: "100%",
+        position: "absolute",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
       <NavBar2 page="game" />
-      {/* information starting from here will be abstracted away, please include all needed information in an object */}
-      <Container maxWidth="lg" style={{ marginTop: 50 }}>
-        <Grid
-          container
-          direction="column"
-          justify="flex-start"
-          alignItems="flex-start"
-          spacing={4}
-        >
-          <Grid item xs>
-            <Grid
-              container
-              spacing={1}
-              direction="row"
-              justify="center"
-              alignItems="flex-start"
-            >
-              <Grid item xs>
-                {/* Top left image here */}
-                <DescriptionImage
-                  imgUrl={cover}
-                  name={extractedData.title}
-                  type="movie"
-                ></DescriptionImage>
-              </Grid>
-              <Grid item xs={9}>
-                <Grid
-                  container
-                  direction="column"
-                  justify="flex-start"
-                  alignItems="stretch"
-                  spacing={2}
-                >
-                  <Grid item xs>
-                    {/* Carousel here */}
-                  </Grid>
-                  <Grid item xs>
-                    {/* Description here */}
-                    <Description
-                      h={185}
-                      description={extractedData.description}
-                    />
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs>
-            {/* Statistics here */}
-            <Statistics />
-          </Grid>
-          <Grid item xs>
-            {/* Friends reviews here */}
-            <Friends />
-          </Grid>
-        </Grid>
-      </Container>
+      <PageContent data={GameData}></PageContent>
     </div>
   );
 }

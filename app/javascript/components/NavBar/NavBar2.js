@@ -101,7 +101,9 @@ function NavBar2(props) {
       </Menu>
       <Menu mode="horizontal" style={rightStyle} selectedKeys={[]} theme="dark">
         <Menu.Item key="login" style={rightItem}>
-          {!auth0Client.isAuthenticated() && (
+          <CenteredModal type="Registration"></CenteredModal>
+          {/* auth0 code */}
+          {/* {!auth0Client.isAuthenticated() && (
             <button className="btn btn-dark" onClick={auth0Client.signIn}>
               Sign In
             </button>
@@ -120,7 +122,7 @@ function NavBar2(props) {
                 Sign Out
               </button>
             </div>
-          )}
+          )} */}
         </Menu.Item>
       </Menu>
     </nav>

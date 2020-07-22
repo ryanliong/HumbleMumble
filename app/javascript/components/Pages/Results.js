@@ -162,6 +162,7 @@ function Results() {
     color: "white",
     fontWeight: "bold",
     textShadow: "2px 2px black",
+    cursor: "pointer",
   };
   //sets what shows when things are clicked
   const filterSelector = (text) => {
@@ -198,6 +199,7 @@ function Results() {
         variant="h2"
         style={categoryStyle}
         onClick={() => filterSelector(category)}
+        onMouseEnter
       >
         {category}
       </Typography>{" "}
