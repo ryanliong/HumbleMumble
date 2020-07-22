@@ -1,11 +1,27 @@
 import React from "react";
 import { Container, Box, Typography } from "@material-ui/core";
 import { Form, Input, Button, Row, Col } from "antd";
+import axios from "axios";
 
 function Registration(props) {
   const onFinish = (values) => {
-    //object here for database
+    //object here for database "values"
+    axios({
+      url: "/api/a/accounts",
+
+      method: "POST",
+      data: {
+        name: values.username,
+        password: values.password,
+        image_url:
+          "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+        bio: "Hi there!",
+      },
+    }).catch((resp) => console.log(resp));
+
     console.log("Success:", values);
+    console.log("Success:", values.username);
+    console.log("Success:", values.password);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -22,9 +38,9 @@ function Registration(props) {
       >
         <Row gutter={[8, 0]}>
           <Col span={12}>
-            <Typography>First Name</Typography>
+            <Typography>Username</Typography>
             <Form.Item
-              name="firstName"
+              name="username"
               rules={[
                 {
                   required: true,
@@ -38,7 +54,7 @@ function Registration(props) {
           <Col span={12}>
             <Typography>Last Name</Typography>
             <Form.Item
-              name="lastName"
+              name="lastName" //remove this pls
               rules={[
                 {
                   required: true,

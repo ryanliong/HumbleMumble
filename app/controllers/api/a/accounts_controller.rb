@@ -1,6 +1,8 @@
 module Api
 	module A
 		class AccountsController < ApplicationController
+			protect_from_forgery with: :null_session
+			
 			def index
 				accounts = Account.all
 
