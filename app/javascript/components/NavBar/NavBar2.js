@@ -12,6 +12,7 @@ function NavBar2(props) {
   const [listOpen, openList] = useState(false);
   const handleClick = (nextPage) => changePage(nextPage);
 
+  const accountLink = `/Account/${localStorage.getItem("slug")}`;
   const signOut = () => {
     auth0Client.signOut();
     props.history.replace("/");
@@ -78,7 +79,7 @@ function NavBar2(props) {
           </Link>
         </Menu.Item>
         <Menu.Item key="account" style={centerItem}>
-          <Link to="/Account">My Account</Link>
+          <Link to={accountLink}>My Account</Link>
         </Menu.Item>
         <Menu.Item key="movie" style={centerItem}>
           <Link to="/Movie">Movie</Link>

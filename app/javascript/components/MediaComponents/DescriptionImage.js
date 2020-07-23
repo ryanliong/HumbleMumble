@@ -9,6 +9,7 @@ import {
   Box,
   Link,
 } from "@material-ui/core";
+import axios from "axios";
 
 const useStyles = makeStyles({
   root: {
@@ -43,12 +44,28 @@ function DescriptionImage(props) {
             window.open("https://www.rottentomatoes.com")
           ),
           actions("Imdb", () => window.open("https://www.imdb.com/")),
+          actions("Add Movie", () => addMedia("movies")),
         ];
 
+  const addMedia = (type) => {
+    axios({
+      url: `/api/a/${type}`,
+
+      method: "POST",
+      data: {
+        title: props.name,
+        image_url: props.imgUrl,
+        description: "Placeholder",
+        score: "Placeholder",
+        account_id: localStorage.getItem("id"),
+      },
+    }).catch((resp) => console.log(resp));
+  };
+
   const personPreset = [
-    actions("Add Movie", () => console.log("Add movie button working")),
-    actions("Add Game", () => console.log("Add game button working")),
-    actions("Add Tv-Show", () => console.log("Add tv-show button working")),
+    actions("Add Movie", () => addMedia("movies")),
+    actions("Add Game", () => addMedia("movies")),
+    actions("Add Tv-Show", () => addMedia("movies")),
   ];
 
   const mediaCategories = ["game", "movie", "tvShow"];

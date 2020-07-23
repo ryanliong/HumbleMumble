@@ -5,7 +5,6 @@ import axios from "axios";
 
 function Registration(props) {
   const onFinish = (values) => {
-    //object here for database "values"
     axios({
       url: "/api/a/accounts",
 
@@ -20,6 +19,7 @@ function Registration(props) {
     }).catch((resp) => console.log(resp));
 
     console.log("Success:", values);
+    //Redirect to sign in page here
   };
 
   const onFinishFailed = (errorInfo) => {

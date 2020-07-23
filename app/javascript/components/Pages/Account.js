@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import DescriptionImage from "../MediaComponents/DescriptionImage";
 import Description from "../MediaComponents/Description";
@@ -10,6 +9,7 @@ import {
   Card,
   CardContent,
   Typography,
+  useRadioGroup,
 } from "@material-ui/core";
 import ContentCarousel from "../MediaComponents/ContentCarousel";
 import InformationBoard from "../MediaComponents/InformationBoard";
@@ -18,8 +18,19 @@ import Recommendation from "../MediaComponents/Recommendation";
 import FriendList from "../MediaComponents/FriendList";
 import InfiniteListExample from "../MediaComponents/InfiniteListExample";
 import NavBar2 from "../NavBar/NavBar2";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function Account() {
+  let { slug } = useParams();
+
+  const userData = {
+    name: localStorage.getItem("name"),
+    imageUrl: localStorage.getItem("imageUrl"),
+    bio: localStorage.getItem("bio"),
+  };
+
   return (
     <div>
       <NavBar2 page="account" />
@@ -42,8 +53,8 @@ function Account() {
               <Grid item xs>
                 {/* Top left image here */}
                 <DescriptionImage
-                  imgUrl="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                  name="Profile picture"
+                  imgUrl={userData.imageUrl}
+                  name={userData.name}
                   type="game"
                 ></DescriptionImage>
               </Grid>
@@ -61,7 +72,11 @@ function Account() {
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}
-                    <Description h={275} title="Bio" />
+                    <Description
+                      h={275}
+                      title="Bio"
+                      description={userData.bio}
+                    />
                   </Grid>
                 </Grid>
               </Grid>

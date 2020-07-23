@@ -2,6 +2,7 @@ module Api
 	module A
 		class MoviesController < ApplicationController
 			protect_from_forgery with: :null_session
+			
 			def index
 				movie = Movie.all
 
