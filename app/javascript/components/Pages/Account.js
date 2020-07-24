@@ -21,7 +21,6 @@ import NavBar2 from "../NavBar/NavBar2";
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import LoadingBar from "../MediaComponents/LoadingBar";
 
 function Account() {
   let { slug } = useParams();
