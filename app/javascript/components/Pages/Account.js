@@ -55,7 +55,7 @@ function Account() {
                 <DescriptionImage
                   imgUrl={userData.imageUrl}
                   name={userData.name}
-                  type="game"
+                  type="account"
                 ></DescriptionImage>
               </Grid>
               <Grid item xs={9}>
@@ -92,7 +92,7 @@ function Account() {
           </Grid>
           <Grid item xs>
             {/* FriendList here */}
-            <Card style={{ width: 1310 }}>
+            {/* <Card style={{ width: 1310 }}>
               <CardContent style={{ padding: 0 }}>
                 <Typography
                   variant="h5"
@@ -102,7 +102,7 @@ function Account() {
                 </Typography>
                 <InfiniteListExample></InfiniteListExample>
               </CardContent>
-            </Card>
+            </Card> */}
           </Grid>
         </Grid>
       </Container>

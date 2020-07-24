@@ -7,6 +7,7 @@ import auth0Client from "./Auth";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchBar from "../MediaComponents/SearchBar";
 import { HomeOutlined } from "@ant-design/icons";
+import { Typography } from "@material-ui/core";
 function NavBar2(props) {
   const [currentPage, changePage] = useState(props.page);
   const [listOpen, openList] = useState(false);
@@ -82,19 +83,19 @@ function NavBar2(props) {
           <Link to={accountLink}>My Account</Link>
         </Menu.Item>
         <Menu.Item key="movie" style={centerItem}>
-          <Link to="/Movie">Movie</Link>
+          Movie
         </Menu.Item>
         <Menu.Item key="game" style={centerItem}>
-          <Link to="/Game">Game</Link>
+          Game{" "}
         </Menu.Item>
         <Menu.Item key="tv-show" style={centerItem}>
-          <Link to="/Tv-Show">Tv-Show</Link>
+          Tv-Show
         </Menu.Item>
         <Menu.Item key="test" style={centerItem}>
           <Link to="/Test">Test</Link>
         </Menu.Item>
         <Menu.Item key="results" style={centerItem}>
-          <Link to="/Results">Results</Link>
+          Results
         </Menu.Item>
         <Menu.Item>
           <CenteredModal type="List"></CenteredModal>

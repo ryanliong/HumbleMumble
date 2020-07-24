@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Box, Typography } from "@material-ui/core";
-import { Form, Input, Button, Row, Col } from "antd";
+import { Form, Input, Button, Row, Col, message } from "antd";
 
 function SignInOut(props) {
+  const [form] = Form.useForm();
   const string_parameterize = (str1) => {
     return str1
       .trim()
@@ -31,13 +32,29 @@ function SignInOut(props) {
         localStorage.setItem("bio", data.attributes.bio);
         localStorage.setItem("id", data.id);
         console.log("log in successful");
+        message.success("Sign in Successful!");
+        props.close();
+      };
+      const failLogin = (errorMessage, passwordFail) => {
+        message.error(errorMessage);
+        if (passwordFail) {
+          form.setFieldsValue({
+            password: "",
+          });
+        } else {
+          form.setFieldsValue({
+            username: "",
+            password: "",
+          });
+        }
       };
 
       data === null
-        ? console.log("No account with that username:", values) //redirect error no account
-        : data.attributes.password === values.password
+        ? failLogin("No account with that username:", false)
+        : //redirect error no account
+        data.attributes.password === values.password
         ? successLogin() // redirect to Account page or home page
-        : console.log("Wrong password"); //redirect error wrong password
+        : failLogin("Wrong password", true); //redirect error wrong password
     });
   };
 
@@ -52,6 +69,7 @@ function SignInOut(props) {
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
+        form={form}
       >
         <Row gutter={[8, 4]}>
           <Col span={24}>

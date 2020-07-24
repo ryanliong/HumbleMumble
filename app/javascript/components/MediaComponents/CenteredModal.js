@@ -1,16 +1,38 @@
 import React from "react";
 import { useState } from "react";
 import Registration from "./Registation";
-import { Button, Modal, Tabs } from "antd";
+import { Modal, Tabs, message } from "antd";
 import MediaList from "./MediaList";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Typography } from "@material-ui/core";
 import SignInOut from "./SignInOut";
+import { useEffect } from "react";
 
 function CenteredModal(props) {
   const [open, setOpen] = useState(false);
   const { TabPane } = Tabs;
+  console.log(localStorage.getItem("username"));
+  // currently using username check because signedIn is true at the start of server for some weird reason
+  console.log(localStorage);
+  console.log(localStorage.getItem("username") != "null");
+
+  const [userSignInStatus, setUserSignInStatus] = useState(
+    localStorage.getItem("username") == null ||
+      localStorage.getItem("username") == "null"
+      ? false
+      : true
+  );
+
+  useEffect(
+    () =>
+      setUserSignInStatus(
+        localStorage.getItem("username") == null ||
+          localStorage.getItem("username") == "null"
+          ? false
+          : true
+      ),
+    [localStorage.getItem("username"), userSignInStatus]
+  );
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -19,7 +41,17 @@ function CenteredModal(props) {
     setOpen(false);
   };
 
-  return props.type == "Registration" ? (
+  const handleSignOut = () => {
+    setUserSignInStatus(false);
+    localStorage.setItem("username", null);
+    message.success("Sign out Successful");
+  };
+
+  const signInOrOutButton = userSignInStatus ? (
+    <button className="btn btn-dark" onClick={handleSignOut}>
+      Sign Out
+    </button>
+  ) : (
     <div>
       <button className="btn btn-dark" onClick={handleOpen}>
         Sign In
@@ -36,11 +68,15 @@ function CenteredModal(props) {
             <Registration close={handleClose}></Registration>
           </TabPane>
           <TabPane tab="Sign in" key="2">
-            <SignInOut></SignInOut>
+            <SignInOut close={handleClose}></SignInOut>
           </TabPane>
         </Tabs>
       </Modal>
     </div>
+  );
+
+  return props.type == "Registration" ? (
+    signInOrOutButton
   ) : (
     <div>
       <Link onClick={handleOpen} style={{ color: "white" }} to="">

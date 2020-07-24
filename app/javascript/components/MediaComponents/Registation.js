@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Box, Typography } from "@material-ui/core";
-import { Form, Input, Button, Row, Col } from "antd";
+import { Form, Input, Button, Row, Col, message } from "antd";
 import axios from "axios";
 
 function Registration(props) {
@@ -19,7 +19,9 @@ function Registration(props) {
     }).catch((resp) => console.log(resp));
 
     console.log("Success:", values);
-    //Redirect to sign in page here
+    message.success("Registration Successful");
+    localStorage.setItem("username", values.username);
+    props.close();
   };
 
   const onFinishFailed = (errorInfo) => {
