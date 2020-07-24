@@ -10,6 +10,7 @@ import {
   Link,
 } from "@material-ui/core";
 import axios from "axios";
+import CenteredModal from "../MediaComponents/CenteredModal";
 
 const useStyles = makeStyles({
   root: {
@@ -38,13 +39,22 @@ function DescriptionImage(props) {
           actions("IGDB", () =>
             window.open("https://www.igdb.com/games/" + props.slug)
           ),
+          actions("Add Game", () => addMedia("games")),
+        ]
+      : props.type === "movie"
+      ? [
+          actions("Rotten Tomatoes", () =>
+            window.open("https://www.rottentomatoes.com")
+          ),
+          actions("Imdb", () => window.open("https://www.imdb.com/")),
+          actions("Add Movie", () => addMedia("movies")),
         ]
       : [
           actions("Rotten Tomatoes", () =>
             window.open("https://www.rottentomatoes.com")
           ),
           actions("Imdb", () => window.open("https://www.imdb.com/")),
-          actions("Add Movie", () => addMedia("movies")),
+          actions("Add Tv Show", () => addMedia("tv_shows")),
         ];
 
   const addMedia = (type) => {
@@ -62,11 +72,7 @@ function DescriptionImage(props) {
     }).catch((resp) => console.log(resp));
   };
 
-  const personPreset = [
-    actions("Add Movie", () => addMedia("movies")),
-    actions("Add Game", () => addMedia("movies")),
-    actions("Add Tv-Show", () => addMedia("movies")),
-  ];
+  const personPreset = [<CenteredModal type="List"></CenteredModal>];
 
   const mediaCategories = ["game", "movie", "tvShow"];
 

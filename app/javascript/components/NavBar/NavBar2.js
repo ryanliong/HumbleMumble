@@ -12,8 +12,14 @@ function NavBar2(props) {
   const [currentPage, changePage] = useState(props.page);
   const [listOpen, openList] = useState(false);
   const handleClick = (nextPage) => changePage(nextPage);
+  const [accountLink, setAccountLink] = useState(
+    `/Account/${localStorage.getItem("slug")}`
+  );
 
-  const accountLink = `/Account/${localStorage.getItem("slug")}`;
+  useEffect(() => {
+    setAccountLink(`/Account/${localStorage.getItem("slug")}`);
+  }, [localStorage.getItem("signedIn")]);
+
   const signOut = () => {
     auth0Client.signOut();
     props.history.replace("/");
@@ -96,9 +102,6 @@ function NavBar2(props) {
         </Menu.Item>
         <Menu.Item key="results" style={centerItem}>
           Results
-        </Menu.Item>
-        <Menu.Item>
-          <CenteredModal type="List"></CenteredModal>
         </Menu.Item>
       </Menu>
       <Menu mode="horizontal" style={rightStyle} selectedKeys={[]} theme="dark">

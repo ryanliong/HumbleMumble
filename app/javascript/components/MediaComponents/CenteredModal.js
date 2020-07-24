@@ -6,14 +6,19 @@ import MediaList from "./MediaList";
 import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut";
 import { useEffect } from "react";
+import { CardActionArea, Typography } from "@material-ui/core";
+import { useParams, Redirect } from "react-router-dom";
 
 function CenteredModal(props) {
+  let { slug } = useParams();
   const [open, setOpen] = useState(false);
   const { TabPane } = Tabs;
   console.log(localStorage.getItem("username"));
   // currently using username check because signedIn is true at the start of server for some weird reason
   console.log(localStorage);
   console.log(localStorage.getItem("username") != "null");
+
+  const [shouldRedirect, setRedirect] = useState(false);
 
   if (localStorage.getItem("signedIn") == null) {
     localStorage.setItem("signedIn", false);
@@ -50,6 +55,7 @@ function CenteredModal(props) {
     localStorage.clear();
     message.success("Sign out Successful");
     localStorage.setItem("signedIn", false);
+    setRedirect(window.location.href.includes("Account"));
   };
 
   const signInOrOutButton = userSignInStatus ? (
@@ -80,14 +86,19 @@ function CenteredModal(props) {
     </div>
   );
 
+  if (shouldRedirect) {
+    return <Redirect to="/" />;
+  }
+
   return props.type == "Registration" ? (
     signInOrOutButton
   ) : (
     <div>
-      <Link onClick={handleOpen} style={{ color: "white" }} to="">
-        List
-      </Link>
-
+      <CardActionArea onClick={handleOpen}>
+        <Typography gutterBottom variant="h6">
+          {"My Media List"}
+        </Typography>
+      </CardActionArea>
       <Modal
         title="List"
         visible={open}

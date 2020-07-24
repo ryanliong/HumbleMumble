@@ -39,7 +39,7 @@ function MediaList() {
     setTimeout(() => setLoadStatus(false), 2000);
   }, []);
 
-  console.log(UserData[0]);
+  console.log(UserData);
 
   //keys of item from left to right
   const columns = [
@@ -77,16 +77,42 @@ function MediaList() {
 
   // data being pushed from left to right in to the list
   const data = [];
-  for (let i = 0; i < 100; i++) {
+  if (UserData.length === 1) {
     data.push({
-      key: i,
-      firstMediaImage: `https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`,
-      firstMediaTitle: "nothing",
+      key: 0,
+      firstMediaImage: UserData[0].image_url,
+      firstMediaTitle: UserData[0].title,
       firstMediaProgress: <ProgressBar></ProgressBar>,
-      secondMediaImage: `https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`,
-      secondMediaTitle: "Title here",
-      secondMediaProgress: <ProgressBar></ProgressBar>,
+      secondMediaImage: ``,
+      secondMediaTitle: "",
+      secondMediaProgress: "",
     });
+  } else {
+    for (let i = 0; i < UserData.length - 1; i += 2) {
+      console.log(UserData);
+      //pushes first first two into the list
+      data.push({
+        key: i,
+        firstMediaImage: UserData[i].image_url,
+        firstMediaTitle: UserData[i].title,
+        firstMediaProgress: <ProgressBar></ProgressBar>,
+        secondMediaImage: UserData[i + 1].image_url,
+        secondMediaTitle: UserData[i + 1].title,
+        secondMediaProgress: <ProgressBar></ProgressBar>,
+      });
+      //pushes a third on into the list if odd number in list
+      if (UserData.length - i === 3) {
+        data.push({
+          key: i,
+          firstMediaImage: UserData[i + 2].image_url,
+          firstMediaTitle: UserData[i + 2].title,
+          firstMediaProgress: <ProgressBar></ProgressBar>,
+          secondMediaImage: ``,
+          secondMediaTitle: "",
+          secondMediaProgress: "",
+        });
+      }
+    }
   }
 
   return loading ? (
