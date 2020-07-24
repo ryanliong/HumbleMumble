@@ -18,18 +18,30 @@ import Recommendation from "../MediaComponents/Recommendation";
 import FriendList from "../MediaComponents/FriendList";
 import InfiniteListExample from "../MediaComponents/InfiniteListExample";
 import NavBar2 from "../NavBar/NavBar2";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import LoadingBar from "../MediaComponents/LoadingBar";
 
 function Account() {
   let { slug } = useParams();
 
-  const userData = {
-    name: localStorage.getItem("name"),
-    imageUrl: localStorage.getItem("imageUrl"),
-    bio: localStorage.getItem("bio"),
-  };
+  const [UserData, setUserData] = useState({});
+
+  const fetchData = useCallback(() => {
+    axios
+      .get(`/api/a/accounts/${slug}`)
+      .then((resp) => {
+        setUserData({
+          name: resp.data.data.attributes.name,
+          imageUrl: resp.data.data.attributes.image_url,
+          bio: resp.data.data.attributes.bio,
+        });
+      })
+      .catch((resp) => console.log(resp));
+  });
+
+  useEffect(() => fetchData(), []);
 
   return (
     <div>
@@ -53,8 +65,8 @@ function Account() {
               <Grid item xs>
                 {/* Top left image here */}
                 <DescriptionImage
-                  imgUrl={userData.imageUrl}
-                  name={userData.name}
+                  imgUrl={UserData.imageUrl}
+                  name={UserData.name}
                   type="account"
                 ></DescriptionImage>
               </Grid>
@@ -75,7 +87,7 @@ function Account() {
                     <Description
                       h={275}
                       title="Bio"
-                      description={userData.bio}
+                      description={UserData.bio}
                     />
                   </Grid>
                 </Grid>

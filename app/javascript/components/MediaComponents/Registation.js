@@ -4,6 +4,14 @@ import { Form, Input, Button, Row, Col, message } from "antd";
 import axios from "axios";
 
 function Registration(props) {
+  const string_parameterize = (str1) => {
+    return str1
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-zA-Z0-9 -]/, "")
+      .replace(/\s/g, "-");
+  };
+
   const onFinish = (values) => {
     axios({
       url: "/api/a/accounts",
@@ -20,7 +28,19 @@ function Registration(props) {
 
     console.log("Success:", values);
     message.success("Registration Successful");
-    localStorage.setItem("username", values.username);
+
+    axios
+      .get(`/api/a/accounts/${string_parameterize(values.username)}`)
+      .then((resp) => {
+        localStorage.setItem("username", values.username);
+        localStorage.setItem("slug", string_parameterize(values.username));
+        localStorage.setItem("signedIn", true);
+        localStorage.setItem("imageUrl", resp.data.data.attributes.image_url);
+        localStorage.setItem("bio", resp.data.data.attributes.bio);
+        localStorage.setItem("id", resp.data.data.id);
+      })
+      .catch((resp) => console.log(resp));
+
     props.close();
   };
 

@@ -15,9 +15,13 @@ function CenteredModal(props) {
   console.log(localStorage);
   console.log(localStorage.getItem("username") != "null");
 
+  if (localStorage.getItem("signedIn") == null) {
+    localStorage.setItem("signedIn", false);
+  }
+
   const [userSignInStatus, setUserSignInStatus] = useState(
-    localStorage.getItem("username") == null ||
-      localStorage.getItem("username") == "null"
+    localStorage.getItem("signedIn") == false ||
+      localStorage.getItem("signedIn") == "false"
       ? false
       : true
   );
@@ -25,12 +29,12 @@ function CenteredModal(props) {
   useEffect(
     () =>
       setUserSignInStatus(
-        localStorage.getItem("username") == null ||
-          localStorage.getItem("username") == "null"
+        localStorage.getItem("signedIn") == false ||
+          localStorage.getItem("signedIn") == "false"
           ? false
           : true
       ),
-    [localStorage.getItem("username"), userSignInStatus]
+    [localStorage.getItem("signedIn"), userSignInStatus]
   );
 
   const handleOpen = () => {
@@ -43,8 +47,9 @@ function CenteredModal(props) {
 
   const handleSignOut = () => {
     setUserSignInStatus(false);
-    localStorage.setItem("username", null);
+    localStorage.clear();
     message.success("Sign out Successful");
+    localStorage.setItem("signedIn", false);
   };
 
   const signInOrOutButton = userSignInStatus ? (

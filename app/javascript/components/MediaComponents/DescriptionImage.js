@@ -85,7 +85,7 @@ function DescriptionImage(props) {
         </CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h3">
-            {mediaCategories.includes(props.type) ? props.name : "Persons name"}
+            {props.name}
           </Typography>
           {mediaCategories.includes(props.type) ? mediaPreset : personPreset}
         </CardContent>
