@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :a do 
       resources :accounts, param: :slug
-      resources :movies
-      resources :games
-      resources :tv_shows
+      resources :movies, param: :id
+      resources :games, param: :id
+      resources :tv_shows, param: :id
     end
   end
 

@@ -20,9 +20,9 @@ module Api
 			end
 
 			def destroy
-				movie = Movie.find_by(movie_params[:id])
+				movie = Movie.find_by(id: params[:id])
 
-				if movie.destory
+				if movie.destroy
 					head :no_content
 				else 
 					render json: {error: movie.errors.messages}, 	status:422
@@ -32,7 +32,7 @@ module Api
 			private
 
 			def movie_params
-				params.require(:movie).permit(:title, :image_url, 	:description, :score, :account_id)	
+				params.require(:movie).permit(:title, :image_url, :description, :score, :account_id)	
 			end
 		end
 	end
