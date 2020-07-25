@@ -5,9 +5,38 @@ import { Redirect, useHistory } from "react-router";
 import { useEffect } from "react";
 
 function SearchBar(props) {
-  const movies = ["The Avengers", "Game", "Tv-Show"];
-  const games = ["Grand Theft Auto V"];
-  const tvShow = [];
+  const topMovies = [
+    "What She Said: The Art of Pauline Kael",
+    "The Ghost of Peter Sellers",
+    "Knives Out",
+    "Premature",
+  ];
+  const topGames = [
+    "The Last of Us: Part II",
+    "Streets of Rage 4",
+    "SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated",
+    "Ghost of Tsushima",
+  ];
+  const topTvShow = [
+    "P-Valley",
+    "Legendary",
+    "The Baby-Sitters Club",
+    "High Fidelity",
+  ];
+  // working on adding past search terms to auto correct, not working yet
+  const movies =
+    localStorage.getItem("moviesList") === null
+      ? topMovies
+      : topMovies.concat(localStorage.getItem("moviesList"));
+  const games =
+    localStorage.getItem("gamesList") === null
+      ? topGames
+      : topGames.concat(localStorage.getItem("gamesList"));
+  const tvShow =
+    localStorage.getItem("tvShowList") === null
+      ? topTvShow
+      : topTvShow.concat(localStorage.getItem("tvShowList"));
+
   const [text, changeText] = useState("");
   const category = "Results";
   const options = movies.concat(games).concat(tvShow);
@@ -60,7 +89,6 @@ function SearchBar(props) {
   }
   const keyPressed = (keyStroke) => {
     if (keyStroke.keyCode == 13) {
-      console.log(textBox);
       pressedEnter(true);
     }
   };

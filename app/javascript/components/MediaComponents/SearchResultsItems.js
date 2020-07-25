@@ -80,7 +80,7 @@ function SearchResultsItem(props) {
                 expandable: true,
                 suffix: "",
                 onEllipsis: (ellipsis) => {
-                  console.log("Ellipsis changed:", ellipsis);
+                  // console.log("Ellipsis changed:", ellipsis);
                 },
                 symbol: <span style={{ color: "blue" }}>expand</span>,
               }}

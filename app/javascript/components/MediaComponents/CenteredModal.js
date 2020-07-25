@@ -13,10 +13,7 @@ function CenteredModal(props) {
   let { slug } = useParams();
   const [open, setOpen] = useState(false);
   const { TabPane } = Tabs;
-  console.log(localStorage.getItem("username"));
   // currently using username check because signedIn is true at the start of server for some weird reason
-  console.log(localStorage);
-  console.log(localStorage.getItem("username") != "null");
 
   const [shouldRedirect, setRedirect] = useState(false);
 

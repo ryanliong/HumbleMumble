@@ -27,7 +27,7 @@ function DisplayResults(props) {
     }
     //loop through to generate list of results
     for (let i = 0; i < resultArray.length; i += 2) {
-      if (resultArray.length - 1 < 1) {
+      if (resultArray.length - i - 1 < 1) {
         //if odd results appear generate only one card
         displayArray.push(
           <Grid item xs key={i}>

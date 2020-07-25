@@ -47,7 +47,7 @@ function Game() {
       },
     })
       .then((response) => {
-        console.log(response.data.result);
+        // console.log(response.data.result);
         setResponseData(response.data.result);
       })
       .catch((error) => {
@@ -60,7 +60,7 @@ function Game() {
     Promise.all([igdbFetch]).then((values) => {
       const searchResults = values[0];
       setIgdbData(searchResults[0]);
-      console.log(igdbData);
+      // console.log(igdbData);
       const getCover =
         searchResults[0].cover === undefined
           ? [{ image_id: null }]
@@ -94,7 +94,7 @@ function Game() {
   useEffect(() => {
     GameData.title = igdbData.name;
     GameData.description = igdbData.summary;
-    console.log(GameData);
+    // console.log(GameData);
   }, [cover]);
 
   let GameData = {

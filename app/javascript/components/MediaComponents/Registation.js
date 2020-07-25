@@ -26,7 +26,6 @@ function Registration(props) {
       },
     }).catch((resp) => console.log(resp));
 
-    console.log("Success:", values);
     message.success("Registration Successful");
 
     axios
@@ -45,7 +44,7 @@ function Registration(props) {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
 
   return (

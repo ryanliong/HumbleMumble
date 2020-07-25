@@ -51,7 +51,11 @@ function Account() {
   console.log(UserData.tvShowsCount);
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "rgba(76, 116, 118, 0.5)",
+      }}
+    >
       <NavBar2 page="account" />
       <Container maxWidth="lg" style={{ marginTop: 50 }}>
         <Grid

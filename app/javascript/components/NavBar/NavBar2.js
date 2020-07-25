@@ -1,24 +1,43 @@
 import React from "react";
-import { List, Menu } from "antd";
+import { Menu } from "antd";
 import { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import CenteredModal from "../MediaComponents/CenteredModal";
 import auth0Client from "./Auth";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchBar from "../MediaComponents/SearchBar";
-import { HomeOutlined } from "@ant-design/icons";
-import { Typography } from "@material-ui/core";
+
 function NavBar2(props) {
   const [currentPage, changePage] = useState(props.page);
-  const [listOpen, openList] = useState(false);
   const handleClick = (nextPage) => changePage(nextPage);
   const [accountLink, setAccountLink] = useState(
     `/Account/${localStorage.getItem("slug")}`
   );
-
+  const [myAccountTab, setAccountTabStatus] = useState(
+    localStorage.getItem("slug") != null ? (
+      <Menu.Item key="account" style={centerItem}>
+        <Link to={accountLink}>My Account</Link>
+      </Menu.Item>
+    ) : (
+      <Menu.Item key="account" disabled style={centerItem}>
+        My Account
+      </Menu.Item>
+    )
+  );
   useEffect(() => {
+    setAccountTabStatus(
+      localStorage.getItem("slug") != null ? (
+        <Menu.Item key="account" style={centerItem}>
+          <Link to={accountLink}>My Account</Link>
+        </Menu.Item>
+      ) : (
+        <Menu.Item key="account" disabled style={centerItem}>
+          My Account
+        </Menu.Item>
+      )
+    );
+
     setAccountLink(`/Account/${localStorage.getItem("slug")}`);
-  }, [localStorage.getItem("signedIn")]);
+  }, []);
 
   const signOut = () => {
     auth0Client.signOut();
@@ -47,6 +66,7 @@ function NavBar2(props) {
     backgroundColor: bgColor,
   };
   const rightItem = { height: 58 };
+
   return (
     <nav>
       <Menu
@@ -85,9 +105,7 @@ function NavBar2(props) {
             <span>Home</span>
           </Link>
         </Menu.Item>
-        <Menu.Item key="account" style={centerItem}>
-          <Link to={accountLink}>My Account</Link>
-        </Menu.Item>
+        {myAccountTab}
         <Menu.Item key="movie" style={centerItem}>
           Movie
         </Menu.Item>

@@ -39,8 +39,6 @@ function MediaList() {
     setTimeout(() => setLoadStatus(false), 2000);
   }, []);
 
-  console.log(UserData);
-
   //keys of item from left to right
   const columns = [
     {
@@ -89,7 +87,6 @@ function MediaList() {
     });
   } else {
     for (let i = 0; i < UserData.length - 1; i += 2) {
-      console.log(UserData);
       //pushes first first two into the list
       data.push({
         key: i,

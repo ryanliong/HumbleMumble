@@ -31,7 +31,6 @@ function SignInOut(props) {
         localStorage.setItem("imageUrl", data.attributes.image_url);
         localStorage.setItem("bio", data.attributes.bio);
         localStorage.setItem("id", data.id);
-        console.log("log in successful");
         message.success("Sign in Successful!");
         props.close();
       };
@@ -59,7 +58,7 @@ function SignInOut(props) {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
 
   return (
