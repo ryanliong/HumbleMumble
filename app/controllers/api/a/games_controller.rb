@@ -32,7 +32,7 @@ module Api
 			private
 
 			def game_params
-				params.require(:game).permit(:title, :image_url, 	:description, :score, :account_id)	
+				params.require(:game).permit(:title, :image_url, 	:description, :score, :link, :account_id)	
 			end
 		end
 	end

@@ -35,12 +35,20 @@ function Account() {
           name: resp.data.data.attributes.name,
           imageUrl: resp.data.data.attributes.image_url,
           bio: resp.data.data.attributes.bio,
+          movieCount: resp.data.data.relationships.movies.data.length,
+          gamesCount: resp.data.data.relationships.games.data.length,
+          tvShowsCount: resp.data.data.relationships.tv_shows.data.length,
         });
       })
       .catch((resp) => console.log(resp));
   });
 
   useEffect(() => fetchData(), []);
+
+  //Extra Media data is HERE
+  console.log(UserData.movieCount);
+  console.log(UserData.gamesCount);
+  console.log(UserData.tvShowsCount);
 
   return (
     <div>

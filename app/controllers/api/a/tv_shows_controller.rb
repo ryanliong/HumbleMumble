@@ -32,7 +32,7 @@ module Api
 			private
 
 			def tvShow_params
-				params.require(:tv_show).permit(:title, :image_url, 	:description, :score, :account_id)	
+				params.require(:tv_show).permit(:title, :image_url, 	:description, :score, :link, :account_id)	
 			end
 		end
 	end

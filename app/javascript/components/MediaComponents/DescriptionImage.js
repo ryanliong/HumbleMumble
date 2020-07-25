@@ -67,6 +67,7 @@ function DescriptionImage(props) {
         image_url: props.imgUrl,
         description: "Placeholder",
         score: "Placeholder",
+        link: window.location.href,
         account_id: localStorage.getItem("id"),
       },
     }).catch((resp) => console.log(resp));

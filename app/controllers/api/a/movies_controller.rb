@@ -32,7 +32,7 @@ module Api
 			private
 
 			def movie_params
-				params.require(:movie).permit(:title, :image_url, :description, :score, :account_id)	
+				params.require(:movie).permit(:title, :image_url, :description, :score, :link, :account_id)	
 			end
 		end
 	end
