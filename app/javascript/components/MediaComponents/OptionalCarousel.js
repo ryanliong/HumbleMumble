@@ -1,12 +1,38 @@
 import React from "react";
-import { Card, Box } from "@material-ui/core";
+import { Card, Box, Typography } from "@material-ui/core";
 import { Carousel } from "antd";
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
-function OptionalCarousel() {
+function OptionalCarousel(props) {
+  const details = props.details.map((info) => (
+    <div>
+      <Typography
+        style={{
+          position: "absolute",
+          color: "white",
+          paddingTop: 70,
+          paddingLeft: 40,
+          maxWidth: 380,
+        }}
+        variant="h4"
+      >
+        {info.title}
+      </Typography>
+      <img style={{ width: 425 }} src={info.image_url} alt={info.title}></img>
+    </div>
+  ));
+  const filler = ["Fill up", "your list", "for more", "recent media"].map(
+    (text) => (
+      <div>
+        <Typography variant="h4" style={{ color: "white" }}>
+          {text}
+        </Typography>
+      </div>
+    )
+  );
   return (
     <Carousel
       autoplay
-      autoplaySpeed={100}
+      autoplaySpeed={1000}
       slidesToShow={3}
       draggable={true}
       infinite={true}
@@ -19,18 +45,7 @@ function OptionalCarousel() {
         lineHeight: 10,
       }}
     >
-      <div>
-        <h3>Recent</h3>
-      </div>
-      <div>
-        <h3>Media</h3>
-      </div>
-      <div>
-        <h3>here</h3>
-      </div>
-      <div>
-        <h3>woohoo</h3>
-      </div>
+      {details.length < 3 ? details.concat(filler) : details}
     </Carousel>
   );
 }

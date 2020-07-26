@@ -115,9 +115,9 @@ function NavBar2(props) {
         <Menu.Item key="tv-show" style={centerItem}>
           Tv-Show
         </Menu.Item>
-        <Menu.Item key="test" style={centerItem}>
+        {/* <Menu.Item key="test" style={centerItem}>
           <Link to="/Test">Test</Link>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="results" style={centerItem}>
           Results
         </Menu.Item>

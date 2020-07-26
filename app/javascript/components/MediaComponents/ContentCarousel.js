@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Box, Container } from "@material-ui/core";
+import { Card, Box, Container, Typography } from "@material-ui/core";
 import { Carousel } from "antd";
 import axios from "axios";
 
@@ -63,20 +63,37 @@ function ContentCarousel(props) {
   return (
     <Box>
       <Card style={{ width: 1000 }}>
-        <Carousel
-          autoplay
-          autoplaySpeed={3000}
-          style={{
-            width: 1000,
-            height: 500,
-            background: "#364d79",
-            overflow: "hidden",
-            textAlign: "center",
-            lineHeight: 30,
-          }}
-        >
-          {test2}
-        </Carousel>
+        {test2.length < 3 ? (
+          <Typography
+            style={{
+              width: 1000,
+              height: 500,
+              background: "#364d79",
+              overflow: "hidden",
+              textAlign: "center",
+              color: "white",
+              lineHeight: 8,
+            }}
+            variant="h2"
+          >
+            No reviews found
+          </Typography>
+        ) : (
+          <Carousel
+            autoplay
+            autoplaySpeed={3000}
+            style={{
+              width: 1000,
+              height: 500,
+              background: "#364d79",
+              overflow: "hidden",
+              textAlign: "center",
+              lineHeight: 30,
+            }}
+          >
+            {test2}
+          </Carousel>
+        )}
       </Card>
     </Box>
   );

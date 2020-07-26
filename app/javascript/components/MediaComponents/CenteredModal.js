@@ -69,7 +69,7 @@ function CenteredModal(props) {
         footer={null}
         onCancel={handleClose}
         centered={true}
-        width={1300}
+        width={800}
       >
         <Tabs type="card">
           <TabPane tab="Register" key="1">

@@ -56,7 +56,7 @@ function Registration(props) {
         onFinishFailed={onFinishFailed}
       >
         <Row gutter={[8, 0]}>
-          <Col span={12}>
+          <Col span={24}>
             <Typography>Username</Typography>
             <Form.Item
               name="username"

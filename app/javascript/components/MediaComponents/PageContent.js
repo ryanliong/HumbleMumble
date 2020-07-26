@@ -75,7 +75,7 @@ function PageContent(props) {
         </Grid>
         <Grid item xs>
           {/* Statistics here */}
-          <Statistics />
+          {/* <Statistics /> */}
         </Grid>
         <Grid item xs>
           {/* Friends reviews here */}

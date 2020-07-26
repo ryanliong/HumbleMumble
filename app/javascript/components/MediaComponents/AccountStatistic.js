@@ -1,15 +1,25 @@
 import React from "react";
 import { Card, Box, Typography, CardContent } from "@material-ui/core";
 import { Tabs } from "antd";
-import { AppleOutlined, AndroidOutlined } from "@ant-design/icons";
+import {
+  LikeOutlined,
+  PlaySquareOutlined,
+  RocketOutlined,
+} from "@ant-design/icons";
 import OptionalCarousel from "./OptionalCarousel";
 
-function AccountStatistic() {
+function AccountStatistic(props) {
   const { TabPane } = Tabs;
 
   function callback(key) {
     console.log(key);
   }
+
+  const gameDetails = props.data.games.map((item) => item.attributes);
+
+  const moviesDetails = props.data.movies.map((item) => item.attributes);
+
+  const tvShowDetails = props.data.tvShows.map((item) => item.attributes);
 
   return (
     <Box>
@@ -20,27 +30,35 @@ function AccountStatistic() {
             <TabPane
               tab={
                 <span>
-                  <AppleOutlined />
+                  <RocketOutlined />
                   Games
                 </span>
               }
               key="1"
             >
-              <OptionalCarousel></OptionalCarousel>
+              <OptionalCarousel details={gameDetails}></OptionalCarousel>
             </TabPane>
             <TabPane
               tab={
                 <span>
-                  <AndroidOutlined />
+                  <PlaySquareOutlined />
                   Movies
                 </span>
               }
               key="2"
             >
-              <OptionalCarousel></OptionalCarousel>
+              <OptionalCarousel details={moviesDetails}></OptionalCarousel>
             </TabPane>
-            <TabPane tab="Tv-Show" key="3">
-              <OptionalCarousel></OptionalCarousel>
+            <TabPane
+              tab={
+                <span>
+                  <LikeOutlined />
+                  Tv-Show
+                </span>
+              }
+              key="3"
+            >
+              <OptionalCarousel details={tvShowDetails}></OptionalCarousel>
             </TabPane>
           </Tabs>
         </CardContent>

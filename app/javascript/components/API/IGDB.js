@@ -20,7 +20,8 @@ function IGDB(props) {
   return axios({
     url:
       // "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/" +
-      "http://localhost:5000/https://api-v3.igdb.com/" + props.type,
+      "https://bibliotheque-gerard-58607.herokuapp.com/https://api-v3.igdb.com/" +
+      props.type,
 
     method: "POST",
     headers: {

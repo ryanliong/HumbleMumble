@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   makeStyles,
@@ -6,10 +6,21 @@ import {
   CardActionArea,
   CardContent,
   Box,
-  Typography,
 } from "@material-ui/core";
+import { Typography } from "antd";
 
+const { Text, Title } = Typography;
 function Description(props) {
+  const [editableBio, setBio] = useState(localStorage.getItem("bio"));
+
+  const change = (str) => {
+    setBio(str);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("bio", editableBio);
+  }, [editableBio]);
+
   return (
     <Card style={{ width: 1000, height: props.h, overflow: "auto" }}>
       <CardContent
@@ -18,12 +29,12 @@ function Description(props) {
           paddingBottom: 0,
         }}
       >
-        <Typography gutterbottom variant="h5">
-          {props.title}
-        </Typography>
-        <Typography gutterbottom variant="p">
-          {props.description}
-        </Typography>
+        <Title level={4}>{props.title}</Title>
+        {props.title === "Bio" ? (
+          <Text editable={{ onChange: change }}>{editableBio}</Text>
+        ) : (
+          <Text>{props.description}</Text>
+        )}
       </CardContent>
     </Card>
   );
