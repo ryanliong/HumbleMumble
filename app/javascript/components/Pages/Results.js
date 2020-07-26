@@ -116,7 +116,7 @@ function Results() {
           ? item.poster_path
           : "http://image.tmdb.org/t/p/w300" + item.poster_path,
       id: item.id,
-      slug: encodeURI(item.title) + "+" + item.id,
+      slug: encodeURI(item.name) + "+" + item.id,
     };
   });
 
