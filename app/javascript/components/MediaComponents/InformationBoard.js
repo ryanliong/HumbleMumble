@@ -12,24 +12,43 @@ function InformationBoard(props) {
         alignItems="flex-start"
         spacing={1}
       >
-        <InformationCard type="overall"></InformationCard>
+        <InformationCard
+          type="overall"
+          info={[
+            `Total: ${
+              props.moviesCount + props.gamesCount + props.tvShowsCount
+            }`,
+          ]}
+        ></InformationCard>
         <Grid container item xs={4} spacing={1}>
           <InformationCard
             type="random"
             name="Game"
-            info={["Games played:", "Time Spent", "Favourites"]}
+            info={[
+              `Games played: ${props.gamesCount}`,
+              "Time Spent",
+              "Favourites",
+            ]}
           ></InformationCard>
           <InformationCard
             type="random"
             name="Movie"
-            info={["Movies watched:", "Time Spent", "Favourites"]}
+            info={[
+              `Movies watched: ${props.moviesCount}`,
+              "Time Spent",
+              "Favourites",
+            ]}
           ></InformationCard>
         </Grid>
         <Grid container item xs={4} spacing={1}>
           <InformationCard
             type="random"
             name="Tv-Show"
-            info={["Tv-Show watched:", "Time Spent", "Favourites"]}
+            info={[
+              `Tv Shows watched: ${props.tvShowsCount}`,
+              "Time Spent",
+              "Favourites",
+            ]}
           ></InformationCard>
           <InformationCard
             type="random"

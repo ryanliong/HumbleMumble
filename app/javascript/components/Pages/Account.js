@@ -35,7 +35,7 @@ function Account() {
           name: resp.data.data.attributes.name,
           imageUrl: resp.data.data.attributes.image_url,
           bio: resp.data.data.attributes.bio,
-          movieCount: resp.data.data.relationships.movies.data.length,
+          moviesCount: resp.data.data.relationships.movies.data.length,
           gamesCount: resp.data.data.relationships.games.data.length,
           tvShowsCount: resp.data.data.relationships.tv_shows.data.length,
         });
@@ -45,10 +45,7 @@ function Account() {
 
   useEffect(() => fetchData(), []);
 
-  //Extra Media data is HERE
-  console.log(UserData.movieCount);
-  console.log(UserData.gamesCount);
-  console.log(UserData.tvShowsCount);
+  console.log(UserData.moviesCount);
 
   return (
     <div
@@ -91,7 +88,11 @@ function Account() {
                 >
                   <Grid item xs>
                     {/* InformationBoard here */}
-                    <InformationBoard></InformationBoard>
+                    <InformationBoard
+                      gamesCount={UserData.gamesCount}
+                      moviesCount={UserData.moviesCount}
+                      tvShowsCount={UserData.tvShowsCount}
+                    ></InformationBoard>
                   </Grid>
                   <Grid item xs>
                     {/* Description here */}

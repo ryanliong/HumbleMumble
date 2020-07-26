@@ -6,6 +6,7 @@ function InformationCard(props) {
       <Card style={{ height: 410 }}>
         <CardContent>
           <Typography>Overall Information</Typography>
+          {props.info}
         </CardContent>
       </Card>
     </Grid>

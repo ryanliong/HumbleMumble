@@ -70,20 +70,6 @@ function Registration(props) {
               <Input />
             </Form.Item>
           </Col>
-          <Col span={12}>
-            <Typography>Last Name</Typography>
-            <Form.Item
-              name="lastName" //remove this pls
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your last name!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
         </Row>
         <Row gutter={[8, 4]}>
           <Col span={24}>
