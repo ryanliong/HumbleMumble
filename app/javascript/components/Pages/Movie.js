@@ -32,8 +32,8 @@ function Movie() {
 
   const backgroundUrl =
     movie.backdrop_path != ""
-      ? "http://image.tmdb.org/t/p/original" + movie.backdrop_path
-      : "http://image.tmdb.org/t/p/original" + movie.poster_path;
+      ? "https://image.tmdb.org/t/p/original" + movie.backdrop_path
+      : "https://image.tmdb.org/t/p/original" + movie.poster_path;
   //create generic object here that is same across all categories for easy processing of information
 
   const rottenTomData = RT.map((item) => {
@@ -51,7 +51,7 @@ function Movie() {
     title: movie.title, //DescriptionImage name
     type: "movie", //DescriptionImage type
     description: movie.overview, //Description description
-    imageUrl: "http://image.tmdb.org/t/p/w300" + movie.poster_path, // DescriptionImage imgURL
+    imageUrl: "https://image.tmdb.org/t/p/w300" + movie.poster_path, // DescriptionImage imgURL
     Id: movie.id, //ContentCarousel movieId
     ReviewData: rottenTomData, //To be passed to ContentCarousel to forLoop through
     slug: `/m/${movie.title}`,

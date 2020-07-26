@@ -15,6 +15,7 @@ module Movie_scraper
 		searchResults = Array.new
 		
 		searchData = JSON.parse(parsed_searchPage.css("script#movies-json").text)
+		
 
 		firstUrl = searchData['items'][0]['url']
 

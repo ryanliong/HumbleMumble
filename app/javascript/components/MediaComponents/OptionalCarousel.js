@@ -45,7 +45,7 @@ function OptionalCarousel(props) {
         lineHeight: 10,
       }}
     >
-      {details.length < 3 ? details.concat(filler) : details}
+      {details.length < 4 ? details.concat(filler) : details}
     </Carousel>
   );
 }

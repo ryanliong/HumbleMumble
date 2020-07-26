@@ -36,8 +36,8 @@ function TvShow() {
 
   const backgroundUrl =
     TvShow.backdrop_path != ""
-      ? "http://image.tmdb.org/t/p/original" + TvShow.backdrop_path
-      : "http://image.tmdb.org/t/p/original" + TvShow.poster_path;
+      ? "https://image.tmdb.org/t/p/original" + TvShow.backdrop_path
+      : "https://image.tmdb.org/t/p/original" + TvShow.poster_path;
   //create generic object here that is same across all categories for easy processing of information
 
   const rottenTomData = RT.map((item) => {
@@ -55,7 +55,7 @@ function TvShow() {
     title: TvShow.name, //DescriptionImage name
     type: "tvShow", //DescriptionImage type
     description: TvShow.overview, //Description description
-    imageUrl: "http://image.tmdb.org/t/p/w300" + TvShow.poster_path, // DescriptionImage imgURL
+    imageUrl: "https://image.tmdb.org/t/p/w300" + TvShow.poster_path, // DescriptionImage imgURL
     Id: TvShow.id, //ContentCarousel movieId
     ReviewData: rottenTomData,
     slug: `/tv/${TvShow.title}`,
